@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+   <script>
+     function validator(target,validator) {
+       return new Proxy(target,{
+         _validator:validator,
+         set(target,key,value,proxy){
+           if(target.hasOwnProperty[key]){
+              let va = this._validator[key]
+              if(!!va(value)){
+                return Reflect.set(target,key,value,proxy)
+              }else{
+                throw Error(`不能设置${key}到${value}`)
+              }
+           }else{
+             throw Error(`${key} 不存在`)
+           }
+         }
+       })
+       }
+       
+       const personValidators = {
+        name:function(val) {
+           return typeof val === 'string'
+         },
+         age(val){
+           return typeof val === 'number' && val>18
+         }
+       }
+      
+       class Person{
+         constructor(name,age){
+           this.name = name;
+           this.age = age;
+           return validator(this,personValidators)
+         }
+       }
+      
+      const person = new Person('lilei',30)
+      // console.log(person)
+      // console.log(personValidators['name'])
+      let s = function (){}
+      let objj={
+        sg:'12',
+        s,
+      }
+      console.log(personValidators)
+   </script>
+</body>
+</html>

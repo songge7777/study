@@ -1,0 +1,65 @@
+Symbol 是一个独一无二的值
+
+声明
+let a1 = Symbol()
+let a11 = Symbol()
+a1 !== a11
+
+let a2 = Symbol.for('a3') a3是一个key值
+let a22 = Symbol.for('a3') a3是一个key值
+a2 === a22
+
+1、当Symbol 为对象的 key值时， for of 是取不到Key
+2、Object.getOwnPropertySymbols(obj) 返回的是一个数组 只能取到对象里面的当Symbol
+3、Reflect.ownkeys(obj) 返回的是一个数组 获取对象里面 普通key 和 Symbol
+
+
+
+
+
+
+
+
+
+set 元素必须是唯一的  去重复的时候要注意类型 1 '1' 是2个不同的元素
+let list = new Set();
+let arr=[1,2,3,4]
+let list1 = new Set(arr)
+list.size   长度
+
+方法 add  delete clear has
+list.add(5) 添加一个5
+list.has('add')   查找是否含有add
+list.delete('add')  删除 元素add
+list.clear()  清除所有
+
+在 for of 中 key 和 value 都是一样的
+for (let  [key,value] of list.entries()){
+  console.log('entries',key,value)
+}  
+
+weakSet 1、他的元素只能是对象  
+        2、他的对象是一个弱引用  对象是一个地址引用 不会检查是否在别的地方用过 跟垃圾回收机制无关 
+他的方法  没有claer方法 size属性  不能遍历  其他一样 
+let weakList = new eWeakSet();
+
+
+
+
+
+
+map 类似对象 他的key 可以是任何数据类型
+1、let map = new Map()
+let arr=['123']
+map.set(arr,456) //添加值
+map.get(arr)     //获取值
+
+2、let map1 = new Map([['a',123],['b',456]]) map接收的是一个数组,数组里面key和value都是数组
+
+map.size
+map.delete('a')
+map.clear()
+其他的跟set一样
+
+
+weakmap接收的key值只能是对象  跟set他们一样

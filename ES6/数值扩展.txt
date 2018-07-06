@@ -1,0 +1,25 @@
+
+o,b 不区别大小写
+二进制 0b开头: 0b11001010
+八进制 0o开头: 0o7676
+
+Number.isFinite(数值) 判断一个数值是否有尽头
+Number.isNaN(数值) 判断一个数值是否是数值
+
+Number.isInteger(数值) 判断一个数值是否是整数(必须是一个数,其他都是false)
+
+-2 53次方----2 53次方 (js 所有的数在这两值之间，不包括他)
+数的最大值 Number.MAX_SAFE_INTEGER 
+数的最小值 Number.MIN_SAFE_INTEGER
+Number.isSafeInteger(数值) 判断一个数 是否在安全的 不是数就是false
+
+取整数 Math.trunc(数值)
+
+判断整数负数还是0  Math.sign(数值)
+            负数   -1  
+            0      0
+            整数    1
+            '123'   1
+            'asd'  NaN
+
+立方根  Math.cbrt(8) =>2

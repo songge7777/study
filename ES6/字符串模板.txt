@@ -1,0 +1,22 @@
+6.30
+
+每两个字节算一个长度（length）
+字母算2个字节 
+
+方法 string.includes('a')  string字符串是否含有a字符
+方法 string.startsWith('a')  string字符串是以a开头
+方法 string.endsWith('a')  string字符串是以a结束
+方法 string.repaert(n) 将原来的字符串复制N次
+
+填充，数组也有类似方法
+方法补白向前 '1'.padStart(2,'0') 2是字符串的长度 0会填充到字符串的长度
+方法补白向后 '1'.padEnd(2,'0')
+
+
+方法 String.raw`Hi\n${1+2}` String.raw作用字符串模板\n 不会转译 
+
+
+
+charCodeAt 取字符串的 编码值  只取2个字节
+ES6  codePointAt 取 编码值 (可以取4个)
+

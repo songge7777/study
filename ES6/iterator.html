@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // let obj = {
+    //   name:'sg',
+    //   fn(){
+    //     console.log('123')
+    //   },
+    //   cs:function(){
+    //     console.log('cs')
+    //   }
+    // }
+    // console.log(obj.fn())
+
+
+    // let arr=['1','32','sg'][Symbol.iterator]()
+    // console.log(arr.next())
+    // console.log(arr.next())
+    // console.log(arr.next())
+    // console.log(arr.next())
+    
+    // let obj = {
+    //   start:[2,5,1],
+    //   end:[7,4,89],
+    //   [Symbol.iterator](){
+    //     let self = this;
+    //     let index = 0;
+    //     let arr =self.start.concat(self.end)
+    //     let len = arr.length;
+    //     return {
+    //       next(){
+    //           if(index<len){
+    //             return{
+    //               value : arr[index++],
+    //               done : false
+    //             }
+    //           }else{
+    //              return {
+    //                 value : arr[index++],
+    //                 done:true
+    //               }
+    //           }
+    //       }
+    //     }
+    //   }
+    // }
+    // for(let key of obj){
+    //   console.log(key)
+    // }
+
+      // let tell = function* (){
+      //   yield 'a';
+      //   yield 'b';
+      //   return 'c'
+      // }
+      
+      // let k = tell()
+      // // tell() 会执行第一个yield 之前的内容
+      // console.log(k.next())
+      // console.log(k.next())
+      // console.log(k.next())
+      // console.log(k.next())
+        
+        {
+          let obj = {};
+          obj[Symbol.iterator] = function* (){
+            yield 'a';
+            yield 'b';
+          }
+          for( let key of obj){
+            console.log('key',key)
+          }
+        }
+        // 状态机
+        {
+          // let state = function* () {
+          //     while(1){
+          //       yield 'a';
+          //       yield 'b';
+          //       yield 'c';
+          //       yield 'd';
+          //     }
+          //   }
+          let state =async function () {
+              while(1){
+                await 'a';
+                await 'b';
+                await 'c';
+                await 'd';
+              }
+            }
+            let status = state();
+            console.log(status.next())
+            console.log(status.next())
+            console.log(status.next())
+            console.log(status.next())
+            console.log(status.next())
+            console.log(status.next())
+            
+        }
+
+
+  </script>
+</body>
+</html>

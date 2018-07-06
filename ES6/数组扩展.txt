@@ -1,0 +1,28 @@
+
+Array.of(11，2，4) => [11,2,4]
+如果没有值  即一个空数组
+
+
+Array.from(p)
+将集合p转换为数组
+Array.from(p,function(){retrun ...})
+第二个参数 等同于数组的map 
+
+fill 填充
+[1,'a',undefined].fill(7) => [7,7,7]
+[1,'a',undefined].fill(7,1,3) => [1,7,7]  
+                7是要换的值 1是起始位子 3是从开始的3个长度
+                要是没有长度 就是后面所有
+
+for (let index of [].keys()){}   取坐标
+for (let index of [].values()){} 取值
+for (let [index,value] of [].entries()){} 2个都取 要用[] 不能用()
+
+[1,2,3,4,5].copyWithin(0,3,4) 将1换成4
+
+数组查找
+[1,2,3,4,5,6].find(function(item){retrun item>3}) 返回 4 本身的值
+[1,2,3,4,5,6].findIndex(function(item){retrun item>3}) 返回 3 4的坐标
+
+[1,2,NaN].includes(1) => true
+[1,2,NaN].includes(NaN) => true
