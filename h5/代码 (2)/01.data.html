@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button data-book-name="javascript权威指南" data-name="张三" type="button" id="btn">点我</button>
+		<script>
+			ready(function(){
+				document.getElementById('btn').onclick=function(){
+					//alert(this.dataset.name);
+					alert(this.dataset.bookName);//把横岗去掉，横杆后面的第一个字母变成大写（驼峰命名）
+				};
+			});
+			
+			
+			
+			function ready(callback){
+				document.addEventListener('DOMContentLoaded',function(){
+					callback();
+				});
+			}
+			
+		</script>
+	</body>
+</html>

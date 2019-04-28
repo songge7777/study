@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+      //  function ajax(fn){
+      //    console.log('执行fn');
+      //    setTimeout(function(){
+      //       fn&&fn()
+      //    },1000)
+      //  }
+      //  ajax(function(){
+      //    console.log('执行毁掉')
+      //  })
+
+
+      // function ajax(){
+      //    console.log('执行fn');
+      //    return new Promise(function(resolve,reject){
+      //      setTimeout(function(){
+      //        resolve('123')
+      //     },1000)
+      //    })
+      //  }
+      //  ajax().then(function(value){
+      //   console.log('Promise',value)
+      //  })
+
+      // {
+      //   //所有物品加载完成添加到页面
+      //   function loadImg(src){
+      //     return new Promise((resolve,reject)=>{
+      //         resolve(src)
+      //     })
+      //   }
+
+      //   function showImgs(imgs){
+      //     console.log('imgs',imgs)
+      //   }
+
+      //   // Promise.all([
+      //   //   loadImg('111'),
+      //   //   loadImg('222'),
+      //   //   loadImg('333'),
+      //   // ]).then(function(img){
+      //   //   console.log(img)
+      //   // })
+      //   Promise.all([
+      //     loadImg('111'),
+      //     loadImg('222'),
+      //     loadImg('333'),
+      //   ]).then(showImgs)
+      // }
+
+      // function ajax(){
+      //    console.log('执行fn');
+      //    return new Promise(function(resolve,reject){
+      //      setTimeout(function(){
+      //        resolve()
+      //     },1000)
+      //    })
+      //  }
+      //  ajax().then(function(){
+      //   console.log('Promise1')
+      //   return new Promise(function(resolve,reject){
+      //      setTimeout(function(){
+      //        resolve()
+      //     },1000)
+      //    })        
+      //  }).then(function () {
+      //   console.log('Promise2')
+      //    })
+
+      // {
+      //   //所有物品加载完成添加到页面
+      //   function loadImg(src){
+      //     return new Promise((resolve,reject)=>{
+      //       let img = document.createElement('img');
+      //       img.src = src;
+      //       img.onload = function(){
+      //         resolve(img)
+      //       }
+      //       img.onerror = function(err){
+      //         reject(err)
+      //       }            
+      //     })
+      //   }
+      //   function showImgs (imgs){
+      //     imgs.forEach(function(img){
+      //       document.body.appendChild(img);
+      //     })
+      //   }
+      //   Promise.all([
+      //     loadImg('http://i4.buimg.com/567571/df1ef0720bea6832.png'),
+      //     loadImg('http://i4.buimg.com/567751/2b07ee25b08930ba.png'),
+      //     loadImg('http://i2.muimg.com/567751/5eb8190d6b2a1c9c.png')
+      //   ]) .then(showImgs)
+      // }
+        {
+          //加载图片 
+          function loadImg(src){
+              return new Promise((resolve,reject)=>{
+                let img = document.createElement('img');
+                img.src= src
+                img.onload = function(){
+                  resolve(img)
+                }
+              })
+          }
+          // 渲染图片
+          function showImgs(imgs){
+            imgs.forEach(img => {
+              document.body.appendChild(img)
+            });
+          }
+          Promise.race([
+              loadImg('http://i4.buimg.com/567571/df1ef072bea6832.png'),
+              loadImg('http://i4.buimg.com/567751/2b07ee25b08930ba.png'),
+              loadImg('http://i2.muimg.com/567751/5eb8190d6b2a1c9c.png')
+          ]).then(showImgs)
+        }
+      
+  </script>
+</body>
+</html>

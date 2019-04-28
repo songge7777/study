@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#myCanvas{
+				border: 1px solid  red;
+				cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAARpJREFUOBGdkr1KA0EUhTcxEkSQQIpAihQWPoedD2BnIVsZQiBVEkiR7SwtBDsJqXwBLQwEgoWNjY2FjYUQ38Ei5Oc7sBeGLTKze+Djzsyecxh2N4ryq0zkHpYQQ2H1SW5TNsxukaZzQsewACvTvIBg3eFUaABHMEv3OruBIN3icm8wZl+FZ3iBQ/AqweGW2FrlKlChV0McFsxOvaegm/T2lLzzTC/dqzaO7A1s/8GzE28Dhhj0f1jQnZ+c18CrKxxrcMO2/uK87m3AcAkrsKA7vzlvQJAmuNywrX84bwY1YBrBATyCFWj+QguCJKNCU1DZQ7r/Y55CsK5x2i2eWFcggTPIJd3Eiv5Zd3KlU3OJOQd9lVd4A5Xl1g4YG2GGhwRfegAAAABJRU5ErkJggg==) 0 17,default;
+				margin: 0 auto;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			注意：canvas标签的宽高只能写在标签上以属性的形式出现，写css样式里无效
+		-->
+		<canvas id="myCanvas" width="400" height="400" >若浏览器不支持该标签，则标签里的内容会被显示出来</canvas>
+		<script>
+			//获取画布
+			var canvas=document.getElementById('myCanvas');
+			
+			//获取context 对象，它就像一只“画笔”
+			var pen=canvas.getContext('2d'); //   3d ==>  webgl
+			
+			var circleX=200;
+			var circleY=200;
+			var r=200;
+			
+			draw();
+			
+			setInterval(draw,1000);
+			
+			function draw(){
+				pen.clearRect(0,0,canvas.width,canvas.height);
+				
+				pen.moveTo(circleX,circleY);
+	   		 	pen.arc(circleX,circleY,r,0,360*Math.PI/180,false);
+	   		 	pen.stroke();
+	   		 	
+	   		 	//一圈是360°
+	   		 	//60分钟   每分钟占用6°
+	   		 	//12个小时  每小时占用30°
+	   		 	//分钟刻度
+	   		 	pen.beginPath();
+	   		 	for(var i=0;i<60;i++){
+	   		 		pen.moveTo(circleX,circleY);
+	   		 		pen.arc(circleX,circleY,r,i*6*Math.PI/180,(i+1)*6*Math.PI/180,false);
+	   		 	}
+	   		 	pen.closePath();
+	   		 	pen.stroke();
+	   		 	
+	   		 	//实心白色圆盖在上面
+	   		 	pen.fillStyle='white';
+	   		 	pen.beginPath();
+	   		 	pen.moveTo(circleX,circleY);
+	   		 	pen.arc(circleX,circleY,r*19/20,0,360*Math.PI/180,false);
+	   		 	pen.closePath();
+	   		 	pen.fill();
+	   		 	
+	   		 	//小时的刻度
+	   		 	pen.lineWidth=3;
+	   		 	pen.beginPath();
+	   		 	for(var i=0;i<12;i++){
+	   		 		pen.moveTo(circleX,circleY);
+	   		 		pen.arc(circleX,circleY,r,i*30*Math.PI/180,(i+1)*30*Math.PI/180,false);
+	   		 	}
+	   		 	pen.closePath();
+	   		 	pen.stroke();
+	   		 	
+	   		 	//实心白色圆盖在上面
+	   		 	pen.fillStyle='white';
+	   		 	pen.beginPath();
+	   		 	pen.moveTo(circleX,circleY);
+	   		 	pen.arc(circleX,circleY,r*18/20,0,360*Math.PI/180,false);
+	   		 	pen.closePath();
+	   		 	pen.fill();
+	   		 	
+	   		 	//获取当前的时间
+	   		 	var current=new Date();
+	   		 	var hours=current.getHours();//小时  22  10
+	   		 	var mins=current.getMinutes();//分钟
+	   		 	var secs=current.getSeconds();//秒
+	   		 	
+	   		 	//计算时针要转多少弧度
+	   		 	//var hoursValue=(-90+30*hours)*Math.PI/180;
+	   		 	var hoursValue=(-90+30*hours+30/60*mins)*Math.PI/180;
+	   		 	//计算分钟要转多少弧度
+	   		 	var minsValue=(-90+6*mins)*Math.PI/180;
+	   		 	//计算秒要转多少弧度
+	   		 	var secsValue=(-90+6*secs)*Math.PI/180;
+	   		 	
+	   		 	//时针
+	   		 	pen.lineWidth=5;
+	   		 	pen.beginPath();
+	   		 	pen.moveTo(circleX,circleY);
+	   		 	pen.arc(circleX,circleY,r*10/20,hoursValue,hoursValue,false);
+	   		 	pen.closePath();
+	   		 	pen.stroke();
+	   		 	
+	   		 	
+	   		 	//分针
+	   		 	pen.lineWidth=3;
+	   		 	pen.beginPath();
+	   		 	pen.moveTo(circleX,circleY);
+	   		 	pen.arc(circleX,circleY,r*15/20,minsValue,minsValue,false);
+	   		 	pen.closePath();
+	   		 	pen.stroke();
+	   		 	
+	   		 	//秒针
+	   		 	pen.lineWidth=1;
+	   		 	pen.beginPath();
+	   		 	pen.moveTo(circleX,circleY);
+	   		 	pen.arc(circleX,circleY,r*18/20,secsValue,secsValue,false);
+	   		 	pen.closePath();
+	   		 	pen.stroke();
+			};
+   		 	
+   		 	
+   		 	
+			
+		</script>
+	</body>
+</html>

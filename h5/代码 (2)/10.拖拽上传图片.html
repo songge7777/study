@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				font-size: 30px;
+				color: #fff
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			#target{
+				width: 400px;
+				height: 400px;
+				background: green;
+				position: absolute;
+				left: 0;
+				top: 200px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div id="target">
+			目标拖拽
+		</div>
+		
+		<script>
+			ready(function(){
+				
+				var target=document.getElementById('target');
+				
+				
+				//进入目标、离开目标之间，连续触发
+				target.ondragover=function(e){
+					console.log('dragover进来了');
+					//阻止默认行为
+					e.preventDefault();
+				};
+				
+				
+				// 在目标元素上释放鼠标触发
+				target.ondrop=function(e){
+					console.log('drop进来了');
+					
+				};
+				
+			});
+			
+			
+			
+			function ready(callback){
+				document.addEventListener('DOMContentLoaded',function(){
+					callback();
+				});
+			}
+			
+			
+		</script>
+	</body>
+</html>

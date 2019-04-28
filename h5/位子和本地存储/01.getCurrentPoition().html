@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" id="btn">点我获取位置</button>
+		<script>
+			DOMReady(function(){
+				document.getElementById('btn').onclick=function(){
+					navigator.geolocation.getCurrentPosition(function(position){
+						console.log("纬度："+position.coords.latitude );
+						console.log("经度:"+position.coords.longitude);
+					},function(positionError){
+						alert('获取定位失败'+positionError.code);
+						
+					});
+				};
+			});
+			
+			
+			function DOMReady(callback){
+				document.addEventListener('DOMContentLoaded',function(){
+					callback();
+				});
+			};
+		</script>
+	</body>
+</html>

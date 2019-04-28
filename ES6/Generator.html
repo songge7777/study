@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // console.log('11')
+    {
+      // let draw = function(count){
+      //   console.log(`剩余${count}次`)
+      //   return 1
+      // }
+
+      // let residue = function* (count) {
+      //   while (count>0){
+      //     count --;
+      //     yield draw(count)
+      //   }
+      // }
+      
+      // let star = residue(5)
+      // console.log(star.next())
+      // let btn = document .createElement('button')
+      // btn.id = 'start'
+      // btn.textContent = '抽奖'
+      // document.body.appendChild(btn)
+      // document.getElementById('start').addEventListener('click',function(){
+      //   star.next()
+      // },false)
+    }
+    // {
+    //   let ajax = function* (){
+    //     yield new Promise((resolve,reject)=>{
+    //         setTimeout(()=>{
+    //           resolve({code:1})
+    //         },200)
+    //     })
+    //   }
+    //   let pull = function(){
+    //     let generator = ajax().next()
+    //     generator.value.then(function(d){
+    //       if(d.code!=0){
+    //           setTimeout(() =>  {
+    //             console.log('wait');
+    //             pull()
+    //           }, 1000);
+    //       }else{
+    //         console.log(d)
+    //       }
+    //     })
+    //   }
+    // }
+    // {
+    //   let fn = function* (){
+    //     yield new Promise((resolve,reject)=>{
+    //       setTimeout(()=>{
+    //         console.log('11')
+    //         resolve({code: 1})
+    //       },1000)
+    //     })
+    //   }
+    //   let pull = function(){
+    //     console.log(fn().next()) 
+    //   }
+    //   pull()
+    // }
+    {
+      // let ajax = function* (){
+      //   yield new Promise((resolve,reject)=>{
+      //       setTimeout(()=>{
+      //         resolve({code:1})
+      //       },200)
+      //   })
+      // }
+      // let pull = function(){
+      //   let generator = ajax().next()
+      //   generator.value.then(function(d){
+      //     if(d.code!=0){
+      //         setTimeout(() =>  {
+      //           console.log('wait');
+      //           pull()
+      //         }, 1000);
+      //     }else{
+      //       console.log(d)
+      //     }
+      //   })
+      // }
+    }
+    {
+      (async function(){
+        console.log('111')
+        await console.log('22')
+        console.log('33')
+
+      }())
+    }
+
+    
+  </script>
+</body>
+</html>

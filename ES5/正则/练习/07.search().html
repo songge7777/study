@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str='welcomeTo51zxw';
+			
+			console.log(str.search('15'));//-1
+			console.log(str.search('w'));//0
+			console.log(str.indexOf('w'));//0
+			
+			
+			console.log(str.search(/\d/));//9
+			
+			
+			console.log(str.search(/E/));//-1  说明正则中是区分大小写的
+			
+			
+			console.log(str.search(/E/i));//1  修饰符i代表忽略大小写
+			
+			
+			console.log(str.search(new RegExp('E','i')));//1  修饰符i代表忽略大小写
+			 
+
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

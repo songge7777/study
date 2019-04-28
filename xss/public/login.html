@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+  123
+  <!-- <form method="get" action="/api/login"> -->
+    <form method="post"  onsubmit="login(event)">
+      账号: <input id='username' name='username' type="text">
+      密码: <input id='password' name='password' type="text">
+      <input type="submit"  value="登录">      
+    </form>
+    <script>
+      function login(e){
+        e.preventDefault();
+        let username = $('#username').val()
+        let password = $('#password').val()
+        console.log(password,username)
+        $.post('/api/login?ss=123',{username,password})
+          .then(res=>{
+            if(res.code === 0){
+              location.href = '/welcome'
+            }else{
+              alert(res.error)
+            }
+          })
+      }
+    </script>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+</body>
+</html>

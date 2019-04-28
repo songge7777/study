@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width:100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				top:0
+			}
+			#div1{
+				background: red;
+			}
+			#div2{
+				background: green;
+				left: 100px;
+			}
+			#div3{
+				background: yellow;
+				left: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+		点击红色块时，让透明度变成半透明，拖动红色块时让红色变粉色
+		拖动绿色块时 让绿色变黄色
+		拖动黄色块时 什么也不做
+		-->
+		<div data-drag='true' id="div1"></div>
+		<div data-drag='true' id="div2"></div>
+		<div id="div3"></div>
+		<script src="plugin-Drag.js"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <form action="#" name="for">
+      姓名:<input type="text" name="name" value="">
+        <br/>
+      性别:<input type="radio" name="ra" value="男" id="nan"/><label for="nan"> 男</label> 
+          <input type="radio" name="ra" value='女' id='nv'/><label for="nv"> 女</label> 
+          <br/>
+      爱好:<input type="checkbox" name='ch' value='吃饭' id='chifan' /> <label for="chifan">吃饭</label> 
+          <input type="checkbox" name='ch' value='睡觉' id='shuijiao'  /> <label for="shuijiao"> 睡觉</label> 
+          <input type="checkbox" name='ch' value='打豆豆' id='dadoudou'/><label for="dadoudou"> 打豆豆</label>   
+          <br/>
+      自我介绍:<textarea name="tex" rows="5" cols="20" > </textarea>
+          <br/>
+        <select name="se" >
+            <option name='op1' >a</option>
+            <option name='op2' value="222">b</option>
+            <option name='op3' value="333">c</option>
+        </select>
+        <input type="submit" value="提交">
+        <input type="reset" value="重置">
+        <!-- <button type="button">提交</button> -->
+      </form>
+
+      <script>
+        let dom = document.forms['for']
+        console.log(dom.ch)
+        
+      </script>
+</body>
+</html>

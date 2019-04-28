@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      time : '2018-03-11',
+      name : 'songg',
+      _r : 41241
+    }
+    let monitor = new Proxy(obj,{
+    // 拦截对象属性的读取
+      // get(target,key){
+      //   return target[key].replace('2018','2017')
+      // }
+      get(target,key,s){
+        console.log(target,key,s)
+        return target.name = 'songge'
+      },
+    // 拦截对象设置属性 
+      set(target,key,value){
+          if(key !== 'name'){
+              return target[key] = value
+          }else{
+            return target[key]
+          }
+      },
+    // 判断对象中有什么属性  拦截key in object操作
+    // 'name' in monitor ==>true 'time'和'_r'都是false
+      has(target,key){
+        if(key === 'time'){
+          return target[key]
+        }else{
+          return false
+        }
+      },
+    // 拦截 delete
+      deleteProperty(target,key){
+        if(key.indexOf('_')>-1){
+          delete target[key];
+          return true
+        }else{
+          return target[key]
+        }
+      },
+    // 拦截Object.keys Object.getOwnPropertySymbols Object.getOwnPropertyNames
+    // Object.keys(monitor) time不会被输出 
+      ownKeys(target){
+        return Object.keys(target).filter(item=>item!='time')
+      }
+    })
+
+    // monitor.time = '2019'
+    // let obj1 = {
+    //   name:'ss',
+    //   age:'12'
+    // }
+    // delete monitor._r 
+    console.log(monitor.time)
+    // Reflect 用法跟他一样
+    // console.log('Reflect',Reflect.get(obj,'time'))
+    // Reflect.set(obj,'name','mukewang')
+    // Reflect.has(obj,'name')
+
+
+
+    // var target = {};
+    // var handler = {};
+    // var proxy = new Proxy(target, handler);
+    // proxy.a = 'b';
+    // target.a // "b"
+    // 要使得Proxy起作用，必须针对Proxy实例（上例是proxy对象）进行操作，而不是针对目标对象（上例是空对象）进行操作
+
+    var target = {};
+    var handler = {
+      get:(target,property)=>{
+        console.log(target,property)
+        return 1
+      }
+    };
+    var proxy = new Proxy(target, handler);
+    // proxy.a = 'b';
+    console.log(proxy.a)
+    /*
+    get(target,propKey,receiver):拦截对象属性的读取
+    set(target,propKey,value,receiver):拦截对象属性的设置
+    has(target,propKey):拦截propKey in proxy操作
+    deleteProperty(target, propKey)：拦截delete proxy[propKey]的操作，返回一个布尔值。
+    ownKeys(target)拦截Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)、
+        for...in循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而Object.keys()的返回结果仅包括目标对象自身的可遍历属性。
+    */
+
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!-- 
+    linux 下运行 安装东西
+        yum  -y install gcc gcc-c++ autoconf pcre pcre-devel make automake
+        yum  -y install wget httpd-tools vim
+    
+    安装:
+        1、创建一个文件
+            /etc/yum.repos.d/nginx.repo
+            写入(官网也有)
+                [nginx]
+                name=nginx repo
+                baseurl=http://nginx.org/packages/centos/7/$basearch/
+                gpgcheck=0
+                enabled=1
+        2、 yum install nginx -y 
+            nginx -v 查看版本
+        yum remove nginx 卸载
+
+    启动和重新加载
+        systemctl start nginx.service
+        systemctl reload nginx.service
+        nginx -s reload
+    
+        grep 查找
+        cat /home | grep md (在/home 中查找 md)
+    查看进程号: cat /var/run/nginx.pid
+   
+   rpm -ql nginx 查看配置文件和目录
+    配置文件:(/etc/nginx 所有的配置都在他下面)
+    /etc/nginx/nginx.conf 主配置文件(最核心的) 
+    /etc/nginx/conf.d (是一个目录 默认的配置文件)
+    /etc/nginx/conf.d/default.conf (默认的)
+
+    tail -f  查看文件(如果文件在写入  他会变动)
+
+    cp default.conf ../b.conf
+
+    log_format 修改
+            zfpx 是定义 日志格式 
+              $arg_name 请求参数 
+              $http_host 请求域名(host 可以改成别的  referer为请求头)
+              $sent_http_cookie 响应的cookie(date 则为时间) 
+        log_format  zfpx  '$arg_name $http_host $sent_http_date"';
+    
+    nginx -t 检查配置是否正确 
+
+
+
+
+    实战
+    // 如果后缀 是 (jpg|png|gif) 结尾 就走下面的root 去该目录下找资源
+    //  ~ 代表 开启正则
+    location ~ .*\.(jpg|png|gif)$ {
+        gzip off;
+        gzip_http_version 1.1;
+        gzip_comp_level 3;
+        gzip_types image/jpeg image/png image/gif;
+        expires 1h;//缓存一个小时
+        root /data/images;
+    }
+
+    location ~ .*\.(html|js|css)$ {
+        gzip on;
+        gzip_min_length 1k;
+        gzip_http_version 1.1;
+        gzip_comp_level 9;
+        gzip_types  text/css application/javascript;
+        root /data/html;
+    }
+
+    // 配置跨域
+    location ~ .*\.json$ {
+        //增加头 就可以了 就是cors里面的一套东西
+        add_header Access-Control-Allow-Origin http://localhost:8080;
+        add_header Access-Control-Allow-Methods GET,POST,PUT,OPTION,DELECT;
+        add_header Access-Control-Allow-Headers Content-Type;
+        add_header Access-Control-Allow-Credentials true;
+        gzip on;
+        gzip_min_length 1k;
+        gzip_http_version 1.1;
+        gzip_comp_level 9;
+        gzip_types  text/css application/javascript;
+        root /data/json;
+    }
+
+    location ~ ^/download {
+        gzip_static on;
+        tcp_nopush on; 
+        root /data/download;
+    }
+    
+    缓存
+    proxy_cache
+    http{  
+        proxy_cache_path /data/nginx/tmp-test levels=1:2 keys_zone=tmp-test:100m inactive=7d max_size=1000g;  
+    } 
+
+    负载均衡
+        upstream zfpx {
+            ip_hash;
+            server localhost:3000 down;
+            server localhost:4000 backup;
+            server localhost:5000 max_fails=1 fail_timeout=10s;
+        }
+
+        server {
+            location / {
+                proxy_pass http://zfpx;
+            }
+        }
+        down	不参与负载均衡
+        backup	备份的服务器
+        max_fails	允许请求失败的次数
+        fail_timeout	经过max_fails失败后，服务暂停的时间
+        max_conns	限制最大的接收的连接数
+
+        分配方式(7种)
+        轮询（默认）	每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。
+        weight(加权轮询)	指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+        ip_hash	每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。
+        url_hash（第三方）	按访问的URL地址来分配 请求，每个URL都定向到同一个后端 服务器上(缓存)
+        fair（第三方）	按后端服务器的响应时间来分配请求，响应时间短的优先分配。
+        least_conn	最小连接数，哪个连接少就分给谁
+        自定义hash	hash自定义key
+
+    正向代理=>代理的是客户端
+    反向代理=>代理的是服务器
+    
+    server {
+        listen      80;
+        server_name  tsml520.cn;
+
+        #设置跨域 add_header 加头  
+        location  / {
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+            add_header Access-Control-Allow-Headers Content-Type;
+            add_header Access-Control-Allow-Credentials true;
+            # 这儿就是代理到别的地方
+            proxy_pass http://localhost:3000;
+    }
+
+ -->
+
+
+
+ <!-- 
+
+upstream zfpx {
+	server localhost:3000;
+	server localhost:3001;
+	server localhost:3002;
+}
+server {
+    listen      80;
+    server_name  tsml520.cn;
+
+    #设置跨域 add_header 加头  
+    location  / {
+       add_header Access-Control-Allow-Origin *;
+	   add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+	   add_header Access-Control-Allow-Headers Content-Type;
+       add_header Access-Control-Allow-Credentials true;
+       proxy_pass http://localhost:3000;
+    }
+
+		location ~ .*\.(jpg|png|gif)$ {
+			  expires 1h;
+        gzip off;
+        gzip_http_version 1.1;
+        gzip_comp_level 3;
+        gzip_types image/jpeg image/png image/gif;
+			  valid_referers none blocked http://tsml520.cn;
+          if ($invalid_referer) {
+            return 403;
+        }
+				root /home/tt;
+
+		}
+     
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+ # 此处是 反向代理 
+server { 
+	listen 4000;
+	server_name tsml520.cn;
+
+	location / {
+	  proxy_pass http://localhost:3001;
+	}
+	
+}
+# 此处是 负载均衡
+server { 
+        listen 5000;
+	server_name tsml520;
+
+	location / {
+	  proxy_pass http://zfpx;
+	}
+}
+
+
+
+
+  -->

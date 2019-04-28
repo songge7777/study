@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+   <script>
+     let s = '\u{20BB7}';
+     let s2 = 's';
+    //  console.log(s.length,s2.length)
+    let s4 = '𠮷'
+    // chartAt(0) 取字符 '123'.chatAt(0) ==>1 也是就取的第一个字 
+    // console.log('0','我们'.charAt(0))
+    // charCodeAt 取字符串的 编码值  只取2个字节
+    // a只有一个 'a'.charCodeAt(0)  是97
+    // 𠮷 长度是2  '𠮷'.charCodeAt(0) 和 '𠮷'.charCodeAt(1) 有2个编码值
+    // console.log('a'.charCodeAt(0))
+    
+    // ES6  codePointAt 取 编码值 
+
+    {
+      let user = {
+        name:'list',
+        info:'hello world',
+        s:'s'
+      }
+      // 标签模板作用
+      //1 防止xss攻击  过滤字符串模板
+      //2 处理多语言
+      console.log(abc`i 213 123  am ${user.s} ${user.name} ${user.info}`);
+      function abc(s,v1,v2,v3,v4){
+        console.log(s,v1,v2,v3,v4)
+        return s+v1+v2+v4
+      }
+      
+    }
+   </script>
+</body>
+</html>

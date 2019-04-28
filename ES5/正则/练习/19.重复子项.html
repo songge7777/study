@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			
+			var str='abcb';
+			console.log(/abc/.test(str));//true
+			console.log(/(a)(b)(c)/.test(str));//true
+			
+			console.log(/(a)(b)(c)\1/.test(str));//false  相当于下面一行代码
+			console.log(/(a)(b)(c)(a)/.test(str));//查找字符串里面是否有 abca
+			
+			
+			console.log(/(a)(b)(c)\2/.test(str));//true  相当于下面的代码
+			console.log(/(a)(b)(c)(b)/.test(str));//true
+			
+			
+			var testReg=/\w\w/ ; //匹配2个 数字、字母、下划线 字符   55  5_  5y，即使这个字符串里面的两个字符不一样，也能匹配成功
+			
+			var testReg2=/(\w)\1/;  //只有当字符串里面的两个字符一样的话，这个正则才能匹配成功
+		</script>
+	</body>
+</html>

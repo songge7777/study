@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str='ass23jij4n56633eddTTZ';
+			console.log(str.match(/\d/g));//["2", "3", "4", "5", "6", "6", "3", "3"]
+			
+			//匹配12345里面的任意数字
+			console.log(str.match(/[12345]/g));//["2", "3", "4", "5", "3", "3"]
+			console.log(str.match(/[1-5]/g));//["2", "3", "4", "5", "3", "3"]
+			
+			//匹配小写字母
+			console.log(str.match(/[a-z]/g));// ["a", "s", "s", "j", "i", "j", "n", "e", "d", "d"]
+			
+			////匹配大写字母
+			console.log(str.match(/[A-Z]/g));
+			
+			//匹配所有数字和大写字母
+			console.log(str.match(/[0-9A-Z]/g));// ["2", "3", "4", "5", "6", "6", "3", "3", "T", "T", "Z"]
+			
+			//除了0-9以外的其他任何字符
+			console.log(str.match(/[^0-9]/g));//["a", "s", "s", "j", "i", "j", "n", "e", "d", "d", "T", "T", "Z"]
+			
+			
+			console.log('red,blue,green'.match(/red|blue|yellow/g));//["red", "blue"]
+			console.log('red,blue,green'.match(/red|blue|yellow/));//["red"]
+		</script>
+	</body>
+</html>

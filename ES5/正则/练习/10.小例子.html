@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title> 
+	</head>
+	<body>
+		<script>
+			// [A-Z]
+			//var str='hello Word Think You I Love You';
+			var str='helloWordThinkYouILoveYou';
+			console.log('1',str.match(/[A-Z]/g));
+			
+			//console.log(str.replace(/[A-Z]/g,'|')) ;
+			
+			var newStr=str.replace(/[A-Z]/g,function($0,$1,$2){
+				console.log($0);
+				return ' '+$0;
+			})
+			console.log(newStr) ;//'hello Word Think You I Love You'
+			
+			console.log(newStr.split(' '));//["hello", "Word", "Think", "You", "I", "Love", "You"]
+		</script>
+	</body>
+</html>

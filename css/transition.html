@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .fly-item,
+    .fly-item>img {
+      position: absolute;
+      width: 50px;
+      background: red;
+      height: 50px;
+      transition: 2s;
+    }
+    .fly-item {
+      margin: 500px 0 0 -25px;
+      opacity: .5;
+      transition-timing-function: linear;
+
+    }
+    .fly-item>img {
+      outline: 1px solid rgb(221, 46, 59);
+      transition-timing-function: cubic-bezier(.18, .64, .6, 1.49);
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+      <a href="javascript:" id="btnCart" class="btn-cart">按钮</a>
+  </div>
+  <div id="flyItem" class="fly-item"><img src="./q1.png"></div>
+  <script>
+    var eleBtn = document.getElementById('btnCart');
+    var eleFlyItem = document.getElementById('flyItem');
+    var eleFlyImg = eleFlyItem.querySelector('img');
+    eleBtn.addEventListener('click', function () {
+      // 现在按钮距离购物车的距离
+      // 中心点的水平垂直距离
+      // 页面滚动尺寸
+      // 购物车图形出现与初始定位
+      // 开始动画
+      eleFlyItem.style.transform = 'translateX(' + 500 + 'px)';
+      eleFlyImg.style.transform = 'translateY(-' + 400 + 'px)';
+
+    });
+  </script>
+</body>
+
+</html>

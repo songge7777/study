@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <script>
+      // let arr = ['a','b','c']
+      // console.log(Object.keys(arr))
+      // let obj={
+      //   a:'a',
+      //   b:'b',
+      //   c:'c'
+      // }   
+      // console.log(Object.keys(obj))
+      // Person.prototype.age = '23'
+
+      function Person(name,age){
+      }
+      // Person.prototype={
+      //   name:'123',
+      //   sg:11,
+      //   friend:[1]
+      // }  
+      Person.prototype={
+        name:'123',
+        sg:11,
+        friend:[1]
+      }  
+      let a1 = new Person()
+      let a2 = new Person()
+        a1.friend.push('a1')
+
+      console.log(a1.friend,a2.friend)
+      //   console.log(Object.keys(Person.prototype))
+      // for(a in a1){
+      //   console.log(a)
+      // }
+      // let b1 = Object.getOwnPropertyNames(Person.prototype)
+      // console.log(b1)
+    </script>
+
+</body>
+</html>

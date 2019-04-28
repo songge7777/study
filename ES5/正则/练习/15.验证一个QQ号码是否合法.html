@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="qq" placeholder="请输入您的QQ号" />
+		<button type="button" id="btn">验证qq</button>
+		<script>
+			/*
+			 * QQ号规则：
+			 * 1.全是数字
+			 * 2.不能以0开头
+			 * 3.数字的个数5-12
+			 */
+			
+			window.onload=function(){
+				var btn=document.getElementById("btn");
+				var text=document.getElementById("qq");
+				btn.addEventListener('click',function(){
+					var qq=text.value;
+					var re=/^[1-9]\d{4,11}$/g;
+					// '12345678910111'
+					if(re.test(qq)){
+						alert('是QQ号');
+					}else{
+						alert('不是一个QQ号');
+					}
+					
+				});
+			};
+		</script>
+	</body>
+</html>

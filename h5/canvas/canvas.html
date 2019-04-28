@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    canvas{
+      border:  1px solid red
+    }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"> 若浏览器不支持该标签，则标签里的内容会被显示出来 </canvas>
+
+  <script>
+    //写子板
+    var vs = document.querySelector('#myCanvas')
+    let pen = vs.getContext('2d')
+          pen.beginPath()
+          pen.moveTo(100,100)
+          pen.font = '48px 微软雅黑'
+
+    vs.addEventListener('mousedown',(e)=>{
+      console.log('1')
+      //按下的时候创建绘制
+      let x = e.clientX
+      let y = e.clientY
+
+      let pen = vs.getContext('2d')
+          pen.beginPath()
+          pen.moveTo(x,y)
+      //鼠标移动,开启绘制
+        vs.addEventListener('mousemove',move)
+        vs.addEventListener('mouseup',()=>{
+          vs.removeEventListener('mousemove',move)
+        })
+      //鼠标放开,关闭绘制
+      function move(e){
+          let xmove = e.clientX
+          let ymove = e.clientY
+          pen.lineTo(xmove,ymove)
+          pen.stroke()
+          console.log('2')
+      }
+    })
+
+
+
+
+  </script>
+  
+</body>   
+</html>

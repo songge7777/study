@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="img/1.jpg"/>
+		其他网页内容
+		
+		<script defer="defer" src="js/a.js"></script>
+		<script defer="defer" src="js/b.js"></script>
+		<script defer="defer" src="js/c.js"></script>
+		<script src="js/d.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded',function(){
+				console.log('DOMready事件');
+			});
+			
+			//下载执行顺序
+			
+			//挂起 a b  c 三个js  
+			
+			//下载d.js
+			//执行d.js的代码
+			
+			//下载a,b,c的js
+			//执行a.js
+			//执行b.js
+			//执行c.js
+			
+			//触发DOMContentLoaded事件
+			//以上是理论上的顺序，实际执行中  a,b,c三个js的下载顺序可能会有些差别
+		
+			//一般配合动态穿件script使用，用来加载页面中不重要的js代码，比如说广告和统计代码
+			/*
+			 var script=document.createElement('script');
+			script.src='js/f.js';
+			script.defer=true;
+			document.body.appendChild(script);
+			*/
+		</script>
+	</body>
+</html>

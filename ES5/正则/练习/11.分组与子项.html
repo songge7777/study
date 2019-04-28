@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str='1970-2-1';
+			 
+			console.log(str.match(/\d+/g));//['1970','2','1']
+			console.log(str.match(/\d+-/g));//["1970-", "2-"]
+			console.log(str.match(/\d-/g));//["0-", "2-"]
+			
+			console.log(str.match(/\d-+/g));//["0-", "2-"]
+			
+			console.log('1970--2--1'.match(/\d-/g));// ["0-", "2-"]
+			console.log('1970--2--1'.match(/\d-+/g));//["0--", "2--"]
+			
+			console.log('1970--2--1'.match(/(\d-)+/g));//["0-", "2-"]
+			console.log('1970-2-1'.match(/(\d-)+/g));//["0-2-"]
+			
+			console.log(str.match(/\d-+/g));//["0-", "2-"]
+			console.log(str.match(/(\d-)+/g));//["0-2-"]
+			
+			
+			str.replace(/\d-+/g,function($0,$1,$2){
+				console.log("未分组的：",$0,$1,$2);
+				//0- 3 1970-2-1
+				//2- 5 1970-2-1
+			});
+			
+			str.replace(/(\d+)(-)/g,function($0,$1,$2){
+				console.log("分组的：",$0,$1,$2);
+				//第一个参数：匹配到数据
+				//第二个参数：对应的是第一个分组查找到的值
+				//第三个参数：对应的是第二个分组查找到的值
+				//第n个参数：对应的是第n-1个分组查找到的值
+				//2- 2 -
+			});
+			
+			/*
+			 match方法匹配子项
+       			没有g修饰符    返回的数组里有子项
+       			有g修饰符       返回的数组里没有子项
+			 */
+			var str2='sha';
+			console.log(str2.match(/(s)(h)(a)/));//["sha", "s", "h", "a"]
+			
+			console.log(str2.match(/(s)(h)(a)/g));//["sha"]
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

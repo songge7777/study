@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//var str='helloWordIAmMan'
+			var str='adbsdhsu2367njnj2nj2234n45nk789';
+			var arr=[],
+			_str,
+			newStr='';
+			for(var i=0;i<str.length;i++){
+				_str=str.charAt(i);
+				//如果碰到数字就进入判断
+				if(!isNaN(_str)){
+					newStr+=_str;
+					//arr.push(_str);
+				}else{
+					if(newStr){
+						arr.push(newStr);
+						newStr='';
+					}
+					
+				}
+			}
+			
+			//如果最后的字符都是数字，那它就不会走上面循环代码里面的else，所以不会往数组里面添加了
+			console.log(newStr);
+			if(newStr){
+				arr.push(newStr);
+				newStr='';
+			}
+			console.log(arr);
+			
+		</script>
+	</body>
+</html>

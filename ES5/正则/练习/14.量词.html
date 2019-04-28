@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str='aaabbbaaa';
+			console.log(str.match(/ab+/g));//'abbb'   贪婪匹配
+			console.log(str.match(/ab?/g));// ["a", "a", "ab", "a", "a", "a"]
+			console.log(str.match(/ab*/g));//["a", "a", "abbb", "a", "a", "a"]
+			
+			
+			str='aaaaaa'
+			console.log(str.match(/a{6}/g));//'aaaaaa'
+			console.log(str.match(/a{7}/g));//null
+			console.log(str.match(/a{2,}/g));//'aaaaaa'
+			console.log(str.match(/a{2,10}/g));//'aaaaaa'
+			
+			
+			console.log('123test321'.match(/\d+/g));//["123", "321"]
+			console.log('123test321'.match(/^\d+/g));//["123"]  匹配字符串开始位置的数字
+			console.log('123test321'.match(/\d+$/g));//['321']
+		</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str='how old are you?';
+			//console.log(str.replace(/$/,'|'))
+			console.log(str.replace(/\b/g,'|'))
+			console.log(str.replace(/\B/g,'|'))
+			
+			//匹配出独立的单词you
+			console.log('how old are you,what`s your name?'.match(/you/g));//["you", "you"]
+			console.log('how old are you,what`s your name?'.match(/\byou\b/g));//["you"]
+			
+			//console.log(' 你 好'.replace(/\b/g,'|'));//null 不支持中文
+			
+			
+			console.log('JavaScript script'.match(/script/gi));//["Script", "script"]
+			console.log('JavaScript script'.match(/\Bscript/gi));//["Script"]  只匹配被包含的 script
+			console.log('JavaScript script'.match(/\bscript\b/gi));//["script"]  只匹配独立的 script 单词
+		</script>
+	</body>
+</html>

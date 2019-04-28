@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+  <!-- <form method="get" action="/api/login"> -->
+    <form method="post"  onsubmit="addComment(event)">
+        内容  <input type="text">
+      <input type="submit"  value="发表">   
+    </form>
+    <div class="com"></div>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script>
+      getList()
+      function getList(){
+        $.get('/api/list')
+        .then(data=>{
+          if(data.code === 0){
+            let {comments} = data
+            let html = ``;
+            comments.forEach(element => {
+              html += `<li>${element.username}- ${element.content}</li>`
+            });
+            $('.com').html(html)
+          }
+        })
+      }
+      function addComment(e){
+        e.preventDefault();
+        // 发表功能
+        let         
+      }
+    </script>
+</body>
+</html>

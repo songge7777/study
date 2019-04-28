@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      // https://www.cnblogs.com/imwtr/p/4392041.html
+      // https://www.jb51.net/article/136520.htm
+
+    // 数据的转换
+    // 所有对象继承了两个转换方法：
+    // 第一个是toString(),它的作用是返回一个反映这个对象的字符串
+    // 第二个是valueOf(),它的作用是返回它相应的原始值
+    // null undefined 不会隐式转换
+    
+
+
+    // toString()可以看做是把一个数据转换成了相应字符串的形式
+    // 对对象x，toString() 返回 “[object type]”,其中type是对象类型。如果x不是对象，toString() 返回x应有的文本值(不是单纯的加”“
+    // 用法一：demo.toString():将demo转换成字符串类型。
+    // 用法二：demo.toString(radix)：将十进制的数demo转换为目标进制的数。 如123.0.toString(8)为将十进制数字123转换为8进制的字符串。
+    //   注：不能写成123.toString(8) . 因为浏览器解析的时候会解析成小数。
+
+    //例题：把一个二进制的数10001000转换成十六进制的数。
+
+    //思路：先把二进制转换成十进制，再由十进制转换成十六进制。
+
+    // var num1 = parseInt('10001000',2);　　//136
+    // var num2 = num1.toString(16);　　//'88'
+
+        //{}.toString() 会报错  要写成({}).toString
+    //  值             转换为：字符串       数字         布尔值        对象          
+    // undefined       "undefined"         NaN          false
+    // null            "null"               0           false
+
+    // true            "true"               1 
+    // false           "false"              0
+
+    // ""(空字符串)                          0           false
+    // "1.2"(非空，数字)                     1.2         true
+    // "one"（非空，非数字）                  NaN         false
+
+    // 0                  "0"                           false
+    // -0                 "0"                           false
+    // NaN                "NaN"                         false
+    // Infinity           "Infinity"                    true
+    // -Infinity          "-Infinity"                   true
+    // 1                  "1"                           true
+
+    // {}(任意对象)                                      true
+    // [](任意数组)         ""                  0        true
+    // [9](1个数字元素)     "9"                 9        true
+    // ['a'](其他数组)      使用join()方法      NaN       true
+    // function(){}(任意函数)                  NaN       true
+    
+      // console.log([1,2,56,7].toString())
+
+// valueOf()  每个JavaScript固有对象的 valueOf 方法定义不同。
+
+      // Array      返回本身
+      // Boolean    Boolean值
+      // Date       时间戳
+      // Function   函数本身
+      // Number     数字值
+      // Object     对象本身。这是默认情况
+      // String     字符串值
+      // Math 和 Error 对象没有 valueOf 方法。
+
+
+// var str = new String('hello,world');
+// console.log(str.valueOf())
+
+
+//  一般来说，对象到字符串的转换经过了如下步骤：
+
+// 1.如果对象具有toString()方法，则调用这个方法。如果它返回一个原始值，js将这个值转换成字符串，并返还这个字符串结果。
+
+// 2.如果对象没有toString()方法，或者这个方法并不返回一个原始值，那么js将调用valueOf()方法。
+
+// 3.否则，js无法从toString()或者valueOf()获得一个原始值，因此这时它将抛出一个类型错误异常。
+
+ 
+
+// 一般来说，对象到数字的转换过程中，js做了同样类似的事情，但这里它会首先尝试使用valueOf()方法：
+
+// 1.如果对象具有valueOf()方法，后者返回一个原始值，则js将这个原始值转换成数字，并返回这个数字。
+
+// 2.否则，如果对象具有toString()方法，后者返回一个原始值，则js将转换并返回。
+
+// （首先js转换成相应的字符串原始值，再继续将这个原始值转换成相应的数字类型，再返回数字）
+
+// 3.否则，js抛出一个类型错误异常。
+
+
+// 注意  1
+// "-"减号运算符把两个操作数都转换成数字  
+// "+"两边其中一个是对象 "+"运算符将对象转换成原始值  "==" ">" "<" 一样
+// var date = new Date(); 
+// var date_string = date.toString(); 
+// var date_value = date.valueOf(); 
+// alert(date == date_string); //true
+// alert(date == date_value); //false
+
+// var now = new Date();
+// console.log(now);  // Date {Sat Apr 04 2015 13:21:08 GMT+0800}
+// console.log(typeof (now+1));  //string
+// console.log((now+1));  //Sat Apr 04 2015 13:21:08 GMT+08001
+// console.log(typeof (now-1));  //number
+// console.log((now-1));  // 1428124868474
+// console.log(now == now.toString());  //true
+// console.log(now > now -1); //true
+
+// 注意2
+//隐士转换时 alert 会默认 调toString()
+// var aaa = { 
+// i: 10, 
+// valueOf: function() { 
+//   console.log('')
+//   return this.i+30; }, 
+// toString: function() { return this.valueOf()+10; } 
+// } 
+// alert(aaa > 20); // true 
+// alert(+aaa); // 40 
+// alert(aaa); // 50 
+
+// var aaa = { 
+// i: 10, 
+// valueOf () { 
+//   console.log('valueOf')
+//   return this.i+30; }, 
+// toString () { 
+//   console.log('toString')
+//   return this.valueOf()+10; } 
+// }
+
+// console.log(typeof function(){}) 
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

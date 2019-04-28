@@ -1,0 +1,87 @@
+数据结构横向对比  增 查 改 删
+let map = new Map()
+let array =[]
+
+//增
+map.set('t',1)
+array.push({t:1)}
+
+//查
+map.has('t') //true
+array.find(item=>item.t) //返回查到的值
+
+//改
+map.set('t',2)
+array.forEach(item=>item.t?item.t=2:'')
+
+//删
+map.delete('t')
+let index = array.findIndex(item=>item.t)  找索引
+array.splice(index,1);
+
+
+set和array
+let set = new Set()
+let array = []
+
+//增
+let t= {t:1}
+set.add(t)
+array.push({t:1})
+
+//查
+set.has(t)
+array.find(item=>item.t)
+
+//改
+set.forEach(item=>item.t?item.t=2:'')
+array.forEach(item=>item.t?item.t=2:'')
+
+//删
+set.forEach(item=>item.t?set.delete(item):'')
+let index =array.findIndex(item=>item.t)
+array.splice(index,1)
+
+
+map set object
+
+let item = {t:1}
+let map = new Map()
+let obj = {}
+let set = new Set()
+
+//增
+map.set('t',1)
+set.add(item)
+obj['t']=1
+
+//查 
+map.has('t')
+set.has(item)
+'t' in obj 
+
+//改
+map.set('t',2);
+item.t = 2;  //set存储的是引用 直接修改引用对象的值 若没有引用地址 需要遍历在改
+obj['t'] = 2;
+
+// 删除
+map.delete('t');
+set.delete(item);
+delete obj(['t'])
+
+
+
+总结:
+数据结构
+能使用map 不使用数组
+数据要求高 
+优先 set  放弃 object 和数组 
+
+
+
+
+
+
+
+

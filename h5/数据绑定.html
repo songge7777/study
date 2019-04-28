@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" class="inp">
+  显示:
+  <div class="div">
+  </div>
+  <input type="text" class="inp2">
+  <br/>
+  <button class="btn">按钮</button>
+  
+  <script>
+    let dom = document.querySelector('.div')
+    let inp = document.querySelector('.inp')
+    let inp2 = document.querySelector('.inp2')
+    let btn = document.querySelector('.btn')
+
+    var obj = {
+      _str : ''
+    }
+    inp2.addEventListener('input',function(){
+      dom.innerHTML =  this.value
+    })
+
+
+    Object.defineProperty(obj,'str',{
+      set:function(data){
+        console.log(data)
+        this._str = data
+        console.log('set',this._str)
+      },
+      get:function(){
+        console.log('get',this._str)
+        return this._str
+      }
+    })
+
+
+    
+    dom.innerHTML = obj.str
+    btn.addEventListener('click',()=>{
+      obj.str = 1
+    })
+
+    console.log(inp.value)
+
+  </script>
+</body>
+</html>

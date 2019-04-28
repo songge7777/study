@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <!-- 
+  原生具备 Iterator 接口的数据结构如下。  
+    Array
+    Map
+    Set
+    String
+    TypedArray
+    函数的 arguments 对象
+    NodeList 对象 -->
+  <script>
+// [Symbol.iterator](){
+//         let self = this;
+//         let index = 0;
+//         let arr =self.start.concat(self.end)
+//         let len = arr.length;
+//         return {
+//           next(){
+//               if(index<len){
+//                 return{
+//                   value : arr[index++],
+//                   done : false
+//                 }
+//               }else{
+//                  return {
+//                     value : arr[index++],
+//                     done:true
+//                   }
+//               }
+//           }
+//         }
+//       }
+
+    // let arr=['1','32','sg'][Symbol.iterator]()
+    // console.log(arr.next())
+    // console.log(arr.next())
+    // console.log(arr.next())
+    // console.log(arr.next())
+
+    // let obj = {
+    //   start:[2,5,1],
+    //   end:[7,4,89],
+    //   [Symbol.iterator](){
+    //     let arr = obj.start.concat(obj.end)
+    //     let len = arr.length
+    //     let index=0
+    //     return{
+    //       next(){
+    //         if(index<len){
+    //           return{
+    //             value : arr[index++],
+    //             done : false
+    //           }
+    //         }else{
+    //           return{
+    //             value : arr[index++],
+    //             done : true
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    // let att = obj[Symbol.iterator]()
+    // console.log(att.next())
+    // console.log(att.next())
+    // console.log(att.next())
+
+    
+    // for(let key of obj){
+    //   console.log(key)
+    // }
+
+      let tell = function* (){
+        yield 'a';
+        yield 'b';
+        return 'c'
+      }
+      for( let a of tell()){
+        console.log(a)
+      }
+      // let k = tell()
+      // console.log(k.next())
+      // console.log(k.next())
+      // console.log(k.next())
+      // console.log(k.next())
+        
+        // {
+        //   let obj = {};
+        //   obj[Symbol.iterator] = function* (){
+        //     yield 'a';
+        //     yield 'b';
+        //   }
+        //   let a = obj[Symbol.iterator]()
+        //   console.log(',',a.next())
+        //   console.log(',',a.next())
+        //   console.log(',',a.next())
+          
+        //   for( let key of obj){
+        //     console.log('key',key)
+        //   }
+        // }
+
+        // 状态机
+        // {
+          // let state = function* () {
+          //     while(1){
+          //       yield 'a';
+          //       yield 'b';
+          //       yield 'c';
+          //       yield 'd';
+          //     }
+          //   }
+        //   let state =async function () {
+        //       while(1){
+        //         await 'a';
+        //         await 'b';
+        //         await 'c';
+        //         await 'd';
+        //       }
+        //     }
+        //     let status = state();
+        //     console.log(status.next())
+        //     console.log(status.next())
+        //     console.log(status.next())
+        //     console.log(status.next())
+        //     console.log(status.next())
+        //     console.log(status.next())
+            
+        // }
+
+        //   let cs= str[Symbol.iterator]=function(){
+        //    let index = 0;
+        //    let len = str.length
+        //     return{
+        //       next(){
+        //         if(index<len){
+        //           index++;
+        //           return{
+        //             value : str.charAt(index-1)*2,
+        //             done :false
+        //           }
+        //         }else{
+        //           return{
+        //             value : 1,
+        //             done :true
+        //           }
+        //         }
+        //       },
+        //     }
+        //   }
+        //   for (let a of str){
+        //     console.log(a)
+        //   }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="file" onchange="getFullPath(this);" />
+  <img id="img" alt="" style="width:200px; height:200px;" src="./1.jpg"/>
+  
+  <script type="text/javascript" language='javascript'> 
+    /**
+     * 文件上传 
+     *  input 标签 type=file
+     *    当文件上传的时候 触发onchange 事件  getFullPath(this) 事件名里面的this指的是当前的input标签
+     *    this.files  接收上传的文件 this.files[0] 就是文件上传的内容  通过URL.createObjectURL 方法将
+     *    他转换成一个流(赋值给src可以显示出来，通过 this.files[0].type 查看时啥类型)
+     *          let blob =  URL.createObjectURL(obj.files[0])
+     *           newPreview.src = blob
+     *           console.log(blob)
+     */
+    
+     function getFullPath(obj) {
+      var newPreview = document.getElementById("img");
+        if (obj) {
+      console.log('1',obj.files[0]) 
+      let blob =  URL.createObjectURL(obj.files[0])
+      newPreview.src = blob
+      console.log(blob)
+
+        //     //ie
+        //     if (window.navigator.userAgent.indexOf("MSIE") >= 1) {
+
+        //         obj.select();
+        //         newPreview.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);";
+        //         newPreview.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = document.selection.createRange().text;
+
+        //         return;
+        //     }
+        //     //firefox
+        //     else if (window.navigator.userAgent.indexOf("Firefox") >= 1) {
+        //         if (obj.files) {
+        //             newPreview.src = window.URL.createObjectURL(obj.files.item(0));
+
+        //             return; 
+        //         }
+        //         newPreview.src = obj.value;
+
+        //         return;
+        //     }
+        //     newPreview.src = obj.value;
+
+        //     return;
+        }
+    }
+     
+</script>
+</body>
+</html>

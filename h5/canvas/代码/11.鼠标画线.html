@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#myCanvas{
+				border: 1px solid  red;
+				cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAARpJREFUOBGdkr1KA0EUhTcxEkSQQIpAihQWPoedD2BnIVsZQiBVEkiR7SwtBDsJqXwBLQwEgoWNjY2FjYUQ38Ei5Oc7sBeGLTKze+Djzsyecxh2N4ryq0zkHpYQQ2H1SW5TNsxukaZzQsewACvTvIBg3eFUaABHMEv3OruBIN3icm8wZl+FZ3iBQ/AqweGW2FrlKlChV0McFsxOvaegm/T2lLzzTC/dqzaO7A1s/8GzE28Dhhj0f1jQnZ+c18CrKxxrcMO2/uK87m3AcAkrsKA7vzlvQJAmuNywrX84bwY1YBrBATyCFWj+QguCJKNCU1DZQ7r/Y55CsK5x2i2eWFcggTPIJd3Eiv5Zd3KlU3OJOQd9lVd4A5Xl1g4YG2GGhwRfegAAAABJRU5ErkJggg==) 0 17,default;
+				margin: 0 auto;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			注意：canvas标签的宽高只能写在标签上以属性的形式出现，写css样式里无效
+		-->
+		<canvas id="myCanvas" width="400" height="400" >若浏览器不支持该标签，则标签里的内容会被显示出来</canvas>
+		<script>
+			//获取画布
+			var canvas=document.getElementById('myCanvas');
+			
+			//获取context 对象，它就像一只“画笔”
+			var pen=canvas.getContext('2d'); //   3d ==>  webgl
+			
+			pen.strokeStyle='red';
+			pen.lineWidth=3;
+			canvas.onmousedown=function(e){
+				
+				//设置起点（算出来的是鼠标相对于画布的坐标）
+				pen.moveTo(e.clientX-this.offsetLeft,e.clientY-this.offsetTop);
+				
+				var _this=this;
+				document.onmousemove=function(e2){
+					//（算出来的是鼠标相对于画布的坐标）
+					pen.lineTo(e2.clientX-_this.offsetLeft,e2.clientY-_this.offsetTop);
+					pen.stroke();
+				};
+				
+				//事件解绑
+				document.onmouseup=function(){
+					this.onmousemove=null;
+					this.onmouseup=null;
+				};
+				
+				
+			};
+   		 	
+   		 	
+			
+		</script>
+	</body>
+</html>

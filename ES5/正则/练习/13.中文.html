@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str='helloWord你好世界';
+			console.log(str.match(/[\u4e00-\u9fa5]/g));//["你", "好", "世", "界"]
+			
+			console.log(decodeURI('\u4e00'));//一
+			console.log(decodeURI('\u9fa5'));//龥
+			
+		</script>
+	</body>
+</html>

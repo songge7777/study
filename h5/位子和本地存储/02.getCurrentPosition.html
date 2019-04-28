@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<body>
+		<button id="btn" type="button">请求</button>
+		<textarea rows="10" cols="30"></textarea>
+		<script>
+			var textArea=document.querySelector('textarea');
+			document.getElementById("btn").onclick=function(){
+				
+				navigator.geolocation.getCurrentPosition(function(position){
+					var str='';
+					str+=('纬度:'+position.coords.latitude+'\n');
+					str+= '经度:'+position.coords.longitude+'\n';
+					str+= '准确度:'+position.coords.accuracy+'\n';
+					str+= '海拔:'+position.coords.altitude+'\n';
+					str+= '海拔准确度:'+position.coords.altitudeAccuracy+'\n';
+					str+= '行进方向：'+position.coords.heading+'\n';
+					str+= '行进速度：'+position.coords.speed+'\n';
+					
+					textArea.innerHTML=str;
+				},function(positionError){
+					alert('请求失败'+positionError.message+positionError.code);
+				},{
+					timeout:5000
+				})
+			};
+		</script>
+	</body>
+</html>

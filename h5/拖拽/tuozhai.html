@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div{
+      width: 100px;
+      height: 100px;
+    }
+    .div1{
+      background: red;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .div2{
+      background: green;
+      position: absolute;
+      top: 500px;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="div1" draggable='true'></div>
+  <canvas></canvas>
+  <div class="div2"></div>
+
+  <script>
+    reading(()=>{
+      let dom = document.querySelector('.div1')
+      let dom2 = document.querySelector('.div2')
+
+      let width,height;
+          dom.addEventListener('dragstart',(e)=>{
+            width = e.clientX - dom.offsetLeft
+              height = e.clientY - dom.offsetTop
+          })
+          dom.addEventListener('drag',(e)=>{
+            dom.style.top = e.clientY -  height + 'px'
+            dom.style.left = e.clientX - width + 'px'
+          })
+          dom.addEventListener('dragend',(e)=>{
+            dom.style.top = e.clientY -  height + 'px'
+            dom.style.left = e.clientX - width + 'px'
+          })
+         dom2.addEventListener('dragenter',(e)=>{
+           console.log('1111111111')
+         })
+         dom2.addEventListener('dragover',(e)=>{
+           e.preventDefault()
+           console.log('2222222222')
+         })
+         dom2.addEventListener('dragleave',(e)=>{
+           console.log('333333333333')
+         })
+         dom2.addEventListener('drop',(e)=>{
+           console.log('4444444444444')
+         })
+
+    })
+
+    function reading(callback){
+      document.addEventListener('DOMContentLoaded',function(){
+        callback()
+      })
+    }
+  </script>
+</body>
+</html>

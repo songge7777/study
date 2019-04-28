@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#myCanvas{
+				border: 1px solid  red;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			注意：canvas标签的宽高只能写在标签上以属性的形式出现，写css样式里无效
+		-->
+		<canvas id="myCanvas" width="400" height="400" >若浏览器不支持该标签，则标签里的内容会被显示出来</canvas>
+		<script>
+			//获取画布
+			var canvas=document.getElementById('myCanvas');
+			
+			//获取context 对象，它就像一只“画笔”
+			var pen=canvas.getContext('2d'); //   3d ==>  webgl
+			
+			//将画笔移动到画布的某个位置，表示从这个地方开始绘画，起点
+			pen.moveTo(100,100);
+			
+			//绘制一条从当前位置到指定x以及y位置的直线
+			pen.lineTo(200,200);
+			
+			
+			pen.lineTo(200,300);
+			
+			
+			
+			pen.stroke();
+			
+   		 	
+   		 	
+			
+		</script>
+	</body>
+</html>

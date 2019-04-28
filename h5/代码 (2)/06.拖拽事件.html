@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				font-size: 30px;
+				color: #fff
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			#target{
+				width: 400px;
+				height: 400px;
+				background: green;
+				position: absolute;
+				left: 0;
+				top: 200px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box"  draggable="true" >
+			被拖拽的
+		</div>
+		
+		
+		<div id="target">
+			目标拖拽
+		</div>
+		<script>
+			ready(function(){
+				var box=document.getElementById('box');
+				
+				// 拖拽前触发
+				box.ondragstart=function(){
+					console.log('dragstart开始拖拽了');
+				};
+				
+				//拖拽前、拖拽结束之间，连续触发
+				box.ondrag=function(){
+					//console.log('drag正在拖拽...');
+				};
+				
+				//拖拽结束触发
+				box.ondragend=function(){
+					console.log('dragend');
+				};
+				
+				var target=document.getElementById('target');
+				
+				//进入目标元素触发，相当于mouseover
+				target.ondragenter=function(){
+					console.log('dragenter进来了');
+				};
+				
+				//进入目标、离开目标之间，连续触发
+				target.ondragover=function(e){
+					console.log('dragover进来了');
+					//阻止默认行为
+					e.preventDefault();
+				};
+				
+				// 离开目标元素触发，相当于mouseout
+				target.ondragleave=function(){
+					console.log('dragleaver进来了');
+				};
+				
+				// 在目标元素上释放鼠标触发
+				target.ondrop=function(){
+					//如果想让这个事件被触发，必须要在dragover事件里面阻止默认行为
+					//默认是禁止把元素拖到目标元素身上的 
+					console.log('drop进来了');
+				};
+				
+			});
+			
+			
+			
+			function ready(callback){
+				document.addEventListener('DOMContentLoaded',function(){
+					callback();
+				});
+			}
+			
+			
+		</script>
+	</body>
+</html>

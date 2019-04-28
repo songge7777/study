@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#bookList{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				overflow: hidden;/*触发BFC清除浮动造成的影响*/
+				border: 1px solid black;
+			}
+			
+			#bookList li{
+				float: left;
+				text-align: center;
+				border: 1px solid black;
+				margin: 10px;
+			}
+			
+			#bookList .price{
+				color: red;
+				font-weight: bold;
+			}
+			
+			/*购物车区域*/
+			#shopCar{
+				border: 1px dashed red;
+				width: 600px;
+				height: 400px;
+				margin: 50px;
+				
+			}
+			
+			#shopCar .row{
+				overflow: hidden;
+				border-bottom: 1px dashed red;
+			}
+			#shopCar .row>div{
+				float: left;
+				width: 33%;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="bookList">
+			
+			
+		</ul>
+		
+		<div id="shopCar">
+			<div class="row">
+				<div>编号</div>
+				<div>书名</div>
+				<div>单价</div>
+			</div>
+			
+		</div>
+		
+		<!--这是书籍列表的模板-->
+		<script id="tplBbookList" type="text/template">
+			{@each bookList as book}
+			<li draggable="true" data-book-info="${book|json}" >
+				<img src="${book.cover}"/>
+				<p>${book.name}</p>
+				<p class="price">${book.price}￥</p>
+			</li>
+			{@/each}
+		</script>
+		
+		
+		<!--购物车的模板-->
+		<script id="tplShopCar" type="text/template">
+			<div>${book.id}</div>
+			<div>${book.name}</div>
+			<div>${book.price}</div>
+		</script>
+				
+		
+		<script src="lib/juicer-min.js"></script>
+		<script>
+			//给榨汁机注册一个方法
+			juicer.register('json',function(data){
+				return JSON.stringify(data);
+			});
+			
+			
+			ready(function(){
+				//1获取数据
+				var xhr=new XMLHttpRequest();
+				xhr.onload=function(){
+					if(xhr.status===200){
+						dealwith(JSON.parse(xhr.responseText));
+					}
+				}
+				xhr.open('get','json/getBook.json',true);
+				xhr.send();
+				
+				
+				
+				
+				function dealwith(data){
+					
+					console.log(data);
+					//2.填充数据
+					
+					//2.1 获取到模板字符串
+					var tplBbookList=document.getElementById('tplBbookList').innerHTML;
+					//2.2榨汁机
+					var str=juicer(tplBbookList,data);
+					//2.3填充到页面
+					var ul=document.getElementById('bookList');
+					ul.innerHTML=str;
+					
+					//3.0绑定事件
+					
+					//循环给要拖拽的元素绑定事件
+					var lis=ul.querySelectorAll('li');
+					for(var i=0;i<lis.length;i++){
+						lis[i].ondragstart=function(e){
+							//console.log(this.dataset.bookInfo);
+							e.dataTransfer.setData('bookInfo',this.dataset.bookInfo);
+							
+						};
+					}
+					
+					//给目标元素绑定事件
+					var shopCarDIV= document.getElementById('shopCar');
+					
+					shopCarDIV.ondragover=function(e){
+						e.preventDefault();
+					};
+					
+					//鼠标在购物车区域松开
+					shopCarDIV.ondrop=function(e){
+						//获取到书籍信息
+						var book=JSON.parse(e.dataTransfer.getData('bookInfo'));
+						console.log(book);
+						
+						//获取购物车模板字符串
+						var tplShopCar= document.getElementById('tplShopCar').innerHTML;
+						
+						var str=juicer(tplShopCar,{'book':book});
+						
+						var div=document.createElement('div');
+						//div.classList.add('row')
+						div.className='row';
+						div.innerHTML=str;
+						
+						//加入购物车的屁股后面
+						this.appendChild(div);
+					};
+					
+				}
+				
+			});
+			
+			
+			
+			function ready(callback){
+				document.addEventListener('DOMContentLoaded',function(){
+					callback();
+				});
+			}
+			
+		</script>
+	</body>
+</html>

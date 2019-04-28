@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.div1,.div2{
+			position: absolute;
+      width: 50px;
+			height: 50px;
+      transition: 2s;
+		}
+		.div2 {
+			width: 20px;
+			height: 20px;
+			border-radius: 50px;
+			transition-timing-function: cubic-bezier(.18, .64, .6, 1.49);
+		}
+
+		.div1 {
+			transition-timing-function: linear;
+			margin-top: 500px;
+			/* transition-timing-function: cubic-bezier(.18, .64, .6, 1.49); */
+
+		}
+	</style>
+</head>
+
+<body>
+	<button class="btn">shooting</button>
+	<div class="div1">
+			<img class="div2" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=36659936,564099673&fm=27&gp=0.jpg">
+		<!-- <div class="div2"></div> -->
+	</div>
+
+	<script>
+		let dom1 = document.querySelector('.div1')
+		let dom2 = document.querySelector('.div2')
+		let btn = document.querySelector('.btn')
+		btn.addEventListener('click', function () {
+			dom1.style.transform = `translateX(${300}px) `
+			dom2.style.transform = `translateY(${-300}px) rotateX(${360}deg) `
+
+		})
+	</script>
+</body>
+
+</html>

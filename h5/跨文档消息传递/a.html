@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+      a
+      <iframe src="./b.html" frameborder="0" id="my"></iframe>
+      <script>
+        setTimeout(() => {
+          let dom = document.getElementById('my').contentWindow
+          dom.postMessage('aaaaaaaaaa','*')
+          console.log(dom) 
+        },2000);
+      </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			
+			//   1.直接量定义      /正则表达式/修饰符
+			var str='51zxw';
+			var reg1=/z/;
+			console.log(reg1,typeof reg1); //  /z/ "object"
+			
+			
+			// 2.对象定义          new RegExp(字符串，修饰符)
+			var reg2=new RegExp('z');
+			console.log(reg2,typeof reg2); //  /z/ "object"
+			
+			
+			var a=[];//1.直接量定义数组
+			a=new Array();//2.对象定义   数组
+			
+			
+			console.log(str.match(/z/));// ['z']
+			
+			
+			console.log('51zxw.com'.match(/\./));//这个.在正则中有特殊含义，所以如果想要匹配一个真正的.符号，则需要加反斜杠进行转义
+			
+			
+		</script>
+	</body>
+</html>

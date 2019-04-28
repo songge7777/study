@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str='welcomeTo51zxw';
+			
+			console.log(str.match('w'));//['w']
+			
+			console.log(str.match(/w/));//['w']
+			
+			//有g修饰符的话就会一直往后查找，直到找到所有  
+			console.log(str.match(/w/g));//["w", "w"]
+			
+			
+			/*
+			//给数组（对象）添加属性 
+			var testArr=['你好'];
+			testArr.index=0;
+			testArr.sex='男';
+			console.log(testArr);
+			function fn(){
+			}
+			fn.sex='男';*/
+			
+			
+			
+			console.log(str.match(/\d/g));//["5", "1"]
+			console.log(str.match(/\d+/g));//["51"]
+			
+			console.log('www.51zxw.net'.match(/w+/g));//["www", "w"]
+		</script>
+	</body>
+</html>

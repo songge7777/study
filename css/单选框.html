@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .class{
+					counter-reset: qw 2;
+				}
+        input:checked {
+            counter-increment: qw 1;
+        }
+        .div::after{
+            content: counter(qw);
+						width: 120px;
+        }
+        .div{
+            width: 100px
+        }
+    </style>
+</head>
+<body>
+    <div class="class">
+    <ol>
+        <li> 
+                <input type="checkbox" id="icecream1">
+                <label for="icecream1">1号</label>
+        </li>    
+        <li> 
+                <input type="checkbox" id="icecream2" href='123'>
+                <label for="icecream2">2号</label>
+        </li>  
+        <li> 
+                <input type="checkbox" id="icecream3" href='123'>
+                <label for="icecream3">3号</label>
+        </li> 
+        <li> 
+                <input type="checkbox" id="icecream4" href='123'>
+                <label for="icecream4">4号</label>
+        </li>   
+    </ol>
+    <div class="div">
+
+        </div>
+			</div>
+        <script>
+            let dom = document.querySelector('.div')
+            console.log(getComputedStyle(dom,':after').content)
+        </script>
+</body>
+</html>

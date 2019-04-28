@@ -1,0 +1,15 @@
+version: '2'
+services:
+ node:
+  build:
+   context: ./images/node
+   dockerfile: Dockerfile
+  volumes: 
+    - ./app/web:/web
+ web:
+  image: nginx
+  ports:
+    - "8080:80"
+  volumes:
+    - ./app/web/views:/mnt/views
+    - ./config/nginx:/etc/nginx/conf.d

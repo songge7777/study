@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+.box { width: 256px; height: 90px; padding: 10px; background-color: #cd0000; color: #fff; }
+.box:empty { opacity: .5; }
+
+.pseudo::after { content: '伪元素生成内容'; }
+    </style>
+</head>
+
+<body>
+        <p><strong>有内容</strong></p>
+        <div class="box">有内容</div>
+        <p><strong>无内容淡色背景</strong></p>
+        <div class="box"></div>
+        <p><strong>空格也算内容</strong></p>
+        <div class="box"> </div>
+        <p><strong>伪元素不算内容</strong></p>
+        <div class="box pseudo"></div>
+</body>
+
+</html>

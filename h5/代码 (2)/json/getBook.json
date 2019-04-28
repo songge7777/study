@@ -1,0 +1,30 @@
+{
+	"bookList":[
+		{
+			"id":1,
+			"name":"Javascript高级程序设计",
+			"cover":"img/1.jpg",
+			"price":78.2
+		},{
+			"id":2,
+			"name":"Javascript权威指南",
+			"cover":"img/2.jpg",
+			"price":110
+		},{
+			"id":3,
+			"name":"JavascriptDOM编程艺术",
+			"cover":"img/3.jpg",
+			"price":38.7
+		},{
+			"id":4,
+			"name":"Javascript语言精粹",
+			"cover":"img/4.jpg",
+			"price":32
+		},{
+			"id":5,
+			"name":"你不知道的js",
+			"cover":"img/5.jpg",
+			"price":38
+		}
+	]
+}

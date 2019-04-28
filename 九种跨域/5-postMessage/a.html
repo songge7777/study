@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    a页面
+    <iframe src="http://localhost:3000/b.html" frameborder="0" id="frame" onload="load()"></iframe>
+    <script>
+        function load(){
+            let frame = document.getElementById('frame')
+            // 发送
+            frame.contentWindow.postMessage('我爱你','http://localhost:3000')
+            // 接收
+            window.onmessage = (e)=>{
+                console.log('a页面',e.data)
+            }
+        }
+    </script>
+</body>
+</html>

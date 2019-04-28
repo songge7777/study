@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="img/1.jpg"/>
+		其他网页内容
+		
+		<script async="async" src="js/a.js"></script>
+		<script async="async" src="js/b.js"></script>
+		<script async="async" src="js/c.js"></script>
+		<script src="js/d.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded',function(){
+				console.log('DOMready事件');
+			});
+			
+			//没有加async的先下载并且马上执行  d.js
+			
+			//加了async的 ，最后下载， abc下载的顺序不确定
+			//并且abc执行顺序也不确定
+			
+			//确保abc里的代码没有相互依赖，保持独立
+		</script>
+	</body>
+</html>

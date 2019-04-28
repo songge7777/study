@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // function a(num){
+    //   if(num<=1){
+    //     return 1
+    //   }else{
+    //     return num*a(num-1)
+    //   }
+    // } 
+    // console.log(a(4)) 
+
+           function obj(a){
+               //利用callee
+               console.log(arguments.callee);
+           }
+           obj(1);
+  </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!-- 
+    安装
+    yum -y install docker-io
+    yum -y install git
+    查看docker版本
+        docker version
+        docker info
+   
+    启动docker服务
+        systemctl start docker
+   
+    阿里云加速
+        mkdir -p /etc/docker
+        
+        tee /etc/docker/daemon.json <<-'EOF'
+        {
+        "registry-mirrors": ["https://fwvjnv59.mirror.aliyuncs.com"]
+        }
+        EOF
+
+        systemctl daemon-reload  (重启服务)
+        systemctl restart docker (重启docker)
+    
+    echo xx(打印)  
+    echo u > u.txt(往u.txt 写入u,要加空格)
+
+    docker 自带DNS功能  可以通过名字 互相访问
+
+    镜像
+        搜索        docker serch ubuntu
+        拉取镜像    docker pull docker.io/hell-world (将仓库中的镜像拉取到本地，前面是作者/后面是名字，作者可以省略)
+        查看镜像    docker image ls
+        删除镜像    docker rmi name/id
+        
+    容器（创建镜像的时候 发现没有 会自动下载）
+        查看容器 docker ps -l(status 是容器的是否开启，-l显示最新的)
+        查看所有容器 docker ps -a
+         
+        基于镜像创建一个容器 
+            docker run  ubuntun   退出就断掉
+        创建 进行完 就删除
+            docker run --rm ubuntu
+        //后台运行(-d 也可以)
+        docker run --detach centos ping www.baidu.com (会有一个string出来)
+        //查看
+        docker logs string
+        //在根目录输出
+        docker logs --follow string
+        //停止运行(id 容器id) stop是缓慢 kill 是立马杀掉  
+        docker stop(kill) id  
+        //启动一个停止的 容器
+        docker start id
+        //删除 容器
+        docker rm id
+        //计算容器的行数
+        docker ps -a | wc -l
+        //进入开启的一个容器
+        //检查容器
+        docker inspect name/id
+        //  进入一个容器
+        docker attach [containerID]
+        // 进入一个正在运行的容器
+        docker container exec -i -t id/name  /bin/bash(-i -t 可以简写-it, /bin/bash 就是一个shell 脚本  进去执行的第一个命令)
+
+        基于镜像创建一个容器 docker run -t -i  ubuntun
+            -t在新容器内指定一个为终端 
+            -i允许在容器内输入进行交互
+        
+        退出 exit
+
+        将容器内的文件 拷贝到 lunix中
+        docker container(可写) cp id:u.txt u.txt(要是写. 就是原名字)
+
+        制作个性化镜像 
+        docker commit -m'注释' -a'name' id name/镜像name:latest   (:这里写的是 tag)
+
+        登录
+            docker login
+            docker push '描述' //推送到 仓库
+            docker push songge/seven:tagname 拉取
+        docker inspect centos （查看镜像）
+        Dockefile
+
+
+        制作Dockerfile
+            安装node 
+            wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+            source /root/.bashrc
+            nvm install stable
+            node -v
+            npm i cnpm -g
+            npm i nrm -g
+
+            express脚手架
+            npm install express-generator -g
+            生成
+            express app
+        
+        创建 文件
+            .dockerignore 
+            Dockerfile
+        创建镜像
+        docker build -t express-demo .
+
+        // 开启容器  -p 3333:3000  意思将当前lunix 3333端口映射到容器里面的3000
+        docker run -p 3333:3000 -it experssDome /bin/bash
+
+        编写Dockerfile 
+        命令	    含义    	         案例
+        FROM	    继承的镜像	        FROM node
+        COPY	    拷贝	           COPY ./app /app
+        WORKDIR	    指定工作路径	    WORKDIR /app
+        RUN	    编译打包阶段运行命令   	 RUN npm install
+        EXPOSE  	暴露端口	        EXPOSE 3000
+        CMD	    容器运行阶段运行命令	 CMD npm run start
+
+        创建硬盘
+
+        docker run -v /mnt -it --name logs centos bash
+        -v指定数据盘 /mnt路径 (存在容器中)
+        -- name logs 给容器取名字
+
+            容器里面的 /mnt 所有内容 对应 阿里云服务器的一个目录内容
+            (在服务器里面 docker inspect id/name =>找Mounts Source对应
+            的就是服务器的地址,Destination 就是容器的位子,
+            注意:1、地址都写绝对地址,2、创建硬盘的时候 有相同文件的时候 服务器将
+            容器进行覆盖
+            )
+        docker run -v ~/mymnt:/mnt -it -name logs centos bash
+        之前服务器路径是默认的  ~/mymnt:/mnt 代表/mymnt 是服务器的路径
+        
+        docker create -v /mnt --name logger centos 
+        创建 数据盘 给人继承用的
+        
+        docker run --volumes-from logger --name log1 -it centos bash
+        继承logger 的数据盘 并且初始化一个容器 数据都会被共享
+
+        网络
+
+        docker network ls
+        // 网络三种 bridge none host
+        docker inspect bridge 
+        //查看网络的连接情况
+        docker run -d --name web_none --net none nginx 
+        // -d 后台运行 --name 指定名字 --net 指定网络
+
+        docker run -d --name web -p 4000:80 nginx
+        创建一个nginx容器  将服务器的4000端口 映射到nginx的80  访问服务器的4000 就直接访问 容器的80
+        (--public 和 -P 一样)
+        docker run -d --name weball --pubilc 80 nginx
+        上面是指定 下面这个是随机端口 将80随机映射出去
+        docker run -d --name weball --pubilc-all nginx
+        将所有的 映射出去
+
+        自定义网络(借助桥接 创建一个自定义网络,可以通过自定义网络 实例化容器)
+        docker newwork create --driver bridge money
+        docker newwork create --driver bridge sale
+        
+        让容器 挂载到网络xia(money 是网络的名字, test1是容器的名字)
+        docker network connect money  test1
+        //卸载
+        docker network disconnect money  test1
+
+
+        查看端口
+        docker port id/name
+
+        compose
+        
+        Compose通过一个配置文件来管理多个Docker容器
+        安装 
+        pip install docker-compose
+        pip install --upgrade pip(升级)
+        创建一个 docker-compose.yml 文件
+            version: '2'
+            services:
+             zfpx1:
+              image: nginx
+               ports:
+                - "8080:80"
+                volumes:
+                - "access:/mnt"
+                networks:
+                 - zfpxnet
+             zfpx2:
+              image: nginx
+               ports:
+                - "8081:80"
+               volumes:
+                - "access:/mnt"
+               networks:
+                - zfpxnet
+             volumes:
+              access:
+               driver: local
+             networks:
+              zfpxnet:
+               driver: bridge
+            服务器 : services
+            数据盘 :services_access
+            网络名字 : services_zfpxnet
+
+        启动
+            docker-compose up 启动所有的服务
+            docker-compose -d 后台启动所有的服务
+            docker-compose ps 打印所有的容器
+            docker-compose stop 停止所有服务
+            docker-compose logs -f 持续跟踪日志
+            docker-compose exec zfpx1 bash 进入zfpx服务系统
+            docker-compose rm 删除服务容器
+            docker network ls 网络不会删除
+            docker-compose down 删除网路
+
+        实战  技巧总结/docker 里面的文件全部上传到 服务器
+              docker-compose up 启动服务 (要在docker-compose.yml下执行)
+              在当前就可以通过  curl http://localhost:8080/api  和 http://localhost:8080/index.html  访问到
+
+              在通过服务器 的nginx 将 docker容器 带出去
+
+
+
+        nginx工具包
+        apt-get update 升级操作系统
+        #ping
+        apt install inetutils-ping 
+        #nslookup
+        apt install dnsutils   
+        #ifconfig 
+        apt install net-tools    
+        #ip
+        apt install iproute2     
+        #curl
+        apt install curl
+
+
+
+
+
+
+
+
+        curl '网站' lunix 查看网站
+ -->    

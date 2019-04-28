@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id='web'>
+  <button id='add'>添加图片</button>
+  <div class="box"></div>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script>
+    // 第二种 不基于后端DOM-Based 修改属性 插入内容 document.write
+    // 改变结构后 会造成攻击
+    // 攻击的内容 xss payload
+
+      // <img src="xxx" onerror="alert(1)"> => 传入的内容:xxx" onerror="alert(1)"
+      // <img src="xxx" ><script>alert(1)<\/script>  => 传入的内容:"/> <script>alert(1)<\/script>
+      //  encodeURI() 将输入的内容 进行转义 
+    $('#add').on('click',()=>{
+
+      //将输入的内容 放到页面中
+      $('.box').html(`<img src="${encodeURI($('#web').val())}" />`)
+    })    
+  </script>
+</body>
+</html>

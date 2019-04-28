@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+  <!-- login 自行提交 -->
+    <form onsubmit="login(event)" name='for'>
+      账号: <input name='user' type="text">
+      密码: <input name='password' type="text">
+      <input type="submit"  value="登录">      
+    </form>
+    <script>
+      function login(e){
+        
+        console.log('123',document.for.user.value)
+        e.preventDefault();
+      }
+    </script>
+  <!-- <script src="/node_modules/jquery/dist/jquery.js"></script> -->
+</body>
+</html>
