@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // let  arr = [1,2,3,5,5,9,74,3,9]
+    // let max=null;
+    // for (let k=0; k<3;k++){
+    //    max = Math.max(...arr)
+    //   let index = arr.indexOf(max)
+    //   arr.splice(index,1)
+    // }
+    // console.log(max)
+
+    // let obj =  Object.is({},{})
+    // let obj2 = -1 === 1
+    // console.log(obj,obj2)
+
+    //  for(let key of arr.keys()){
+    //    console.log(key)
+    //  }
+      let obj1 = {}
+      let obj2 = {a:'123',b:{s:123}}
+      Object.assign(obj1,obj2)
+      // obj1 = {...obj1,...obj2}
+      // console.log(obj1,obj2)
+
+      function deepClone(obj){
+        let context = Array.isArray(obj)?[]:{}
+        for(let k in obj){
+          if(obj.hasOwnProperty(k)){
+            if(typeof obj[k] === 'object'){
+              context[k] = deepClone(obj[k])
+            }else{
+              context[k] = obj[k]
+            }
+          }
+        }
+        return context
+      }
+      let a = deepClone(obj2)
+      obj2.b.s = 1
+
+console.log(a)      
+// // 1
+// Array.isArray(arr)
+// // 2
+// Object.prototype.toString.call(arr)
+// // 3
+// arr.constructor === Array 
+// // 4
+// arr instanceof Array 
+  </script>
+</body>
+</html>

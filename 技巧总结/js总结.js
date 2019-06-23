@@ -364,5 +364,77 @@ import { stat, exists, readFile } from 'fs';
         let source = source.toString(64)
         // data:image/jpeg;base64 必需加的前缀
         base64 格式 data:image/jpeg;base64,xxxxx;
+      19、
+        调类里面的方法  里面的this(指向当前类的实例) 如果遇到定时器 this指定就不稳定了
+        技巧:(参考vuex里面的代码) 
+            当调用属性和类上的方法  属性优先
+        class Store{
+            constructor(options){
+              // 先获取commit,dispatch 方法 等调用(commit,dispatch)的时候 会调用属性里面的
+              let {commit,dispatch} = this;
+              this.commit = (type) => {
+                commit.call(this,type)
+              }
+              this.dispatch = (type) => {
+                dispatch.call(this,type)
+              }
+            }
+            commit(type){
+              this.mutations[type]()
+            }
+            dispatch(type){
+              this.actions[type]()
+            }
+        }
+      20、
+        let arr = [
+          {a:fn1},
+          {b:fn2},
+        ]
+        forEach将arr 的 a和fn1这种key和value分开
+        function forEach(obj,callback){
+          Object.keys(obj).forEach(item=>callback(item,obj[item]))
+        }
+      21
+        {
+          a:{
+            modules:{
+              a1:{}
+            }
+          },
+          b:{
+            modules:{
+              b1:{}
+            }
+          }
+        }
+        这类格式 参考vuex的module
+        class ModuleCollection{
+          constructor(options){// vuex [a,b]
+            this.register([],options);
+          };
+          register(path,rawModule){
+            // path 是个空数组 rawModule就是一个对象
+            let newModule = {
+              _raw:rawModule,// 对象 当前 有state getters 那个对象
+              _children:{}, // 表示 他包含的模块
+              state:rawModule.state //他自己模块的状态
+            }
+            if(path.length == 0){
+              this.root = newModule; // 根
+            }else{
+              let parent = path.slice(0,-1).reduce((root,current)=>{
+                return root._children[current];
+              },this.root)
+              // path[path.length-1] 取数组的最后一项
+              parent._children[path[path.length-1]] = newModule
+            }
+            if(rawModule.modules){ // 有子模块
+              forEach(rawModule.modules,(childName,module)=>{
+                this.register(path.concat(childName),module)
+              })
+            }
+          }
+        }
 
           */

@@ -397,8 +397,6 @@ h3. 页面自动爬取(点播数据)
 
     response响应的地址带'get_vod_list.jsp' 
     vodLevel2Response()方法处理 第二栏的数据
-
-
     
 </pre>
 

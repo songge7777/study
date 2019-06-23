@@ -335,3 +335,21 @@
 
 
 */
+
+
+Function.prototype.myCall = function(context,...args){
+    context = context ? Object(context) : window;
+    context.fn = this;
+    // let args = [];
+    // for (let i=1;i<arguments.length;i++){
+    //   args.push(`arguments[${i}]`)
+    // }
+    // 利用toString 的特性
+    let r = eval('context.fn('+args+')')
+    delete context.fn;  
+    return r
+  }
+function a(...s){
+    console.log(this,s)
+}
+a.myCall({},2,3,4)

@@ -3,7 +3,7 @@
       https://blog.csdn.net/x_jagger/article/details/73430959
   toString()返回一个表示该对象的字符串
       每个对象都有一个 toString() 方法，当对象被表示为文本值时或者当以期望字符串的方式引用对象时，该方法被自动调用。
-    对对象x，toString() 返回 “[object type]”,其中type是对象类型。
+    对对象x.toString() 返回 “[object type]”,其中type是对象类型。
     如果x不是对象，toString() 返回x应有的文本值(简单这个理解))
       可以自己定义一个对象的toString()方法来覆盖它原来的方法。这个方法不能含有参数，方法里必须return一个值。
   valueOf() 方法返回指定对象的原始值 

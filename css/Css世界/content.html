@@ -6,53 +6,41 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    /* img{
-      content: url('./mm1.jpg');
+    .div{
+      overflow: hidden;
     }
-    img:hover{
-      content: url('./12.jpg')
-    } */
- 
-    /* h1::after{
-      content: '123'
-    } */
-    .box{
-      width: 256px;
-      height: 256px;
-      border-bottom: 1px dashed #ccc;
-      text-align: justify;
-      text-align-last: justify
+    .div1{
+      width: 100px;
+      height: 100px;
+      border: 1px solid red;
+      /* display: inline-block; */
+      margin-right:10px;
+      margin-bottom:10px;
+      overflow: hidden;
+      
     }
-    .box::before{
-      content: "";
-      display: inline-block;
-      height: 100%;
+    .div2{
+      width: 100px;
+      height: 100px;
+      border: 1px solid green;
+      /* display: inline-block; */
+      margin-left:10px;
+
+      overflow: hidden;
+      margin-top:10px;
     }
-    /* 
-    .box::after{
-      content: "";
-      display: inline-block;
-      width: 100%;
-    } */
-    .bar{
-      display: inline-block;
-      width: 20px;
-      height: 10px;
-      background: red
-    }
-    
   </style>
 </head>
-<body>
-  <!-- <div></div> -->
-  <!-- <img src="./mm1.jpg"> -->
-  <!-- <h1>123</h1> -->
-  <div id="box" class="box" ><i class="bar"></i>
-    <i class="bar"></i>
-    <i class="bar"></i>
-    <i class="bar"></i>
-    <i class="bar"></i>
-  </div> 
+<body >
+      <div class="div1">
+          1
+        </div>
+  <div class="div">
+        
+        <div class="div2">
+          2
+        </div>
+  </div>
 
 </body>
 </html>

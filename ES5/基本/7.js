@@ -1,10 +1,6 @@
 
 
-// let a =  Math.round(Math.random()*(y-x)+x)
-// console.log(a)
 
-// let a = Math.round(Math.random()*(80-77)+77)
-// console.log(a)
-
-let a = [1,3,65,63,2]
-console.log(a,a.splice())
+// let 
+let [x, , y,...tail] = [1, 2, 3, 4, 5, 6];
+console.log('tail',tail)
