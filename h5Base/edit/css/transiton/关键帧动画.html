@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		/*
+		 animation  关键帧          进去就开始动画 与元素状态无关
+		 transition 过度动画      需要有状态的变更
+		 * */
+		.container{
+			width: 100px;
+			height: 100px;
+			background: red;
+			animation: run 1s linear;
+			/*指定是正向还是反向*/		
+			/*animation-direction: reverse;*/
+			/*循环次数  2代表2次  infinite无限*/	
+			animation-iteration-count: 1;
+			/*他存在 动画停止*/	
+			/*animation-play-state: paused;*/
+			
+			/*forwards 动画往前 停在那里
+			  backwards 动画回来  停在那里
+			 * */
+			animation-fill-mode: backwards;
+		}
+		@keyframes  run{
+			0%{
+				width: 100px;
+			}
+			100%{
+				width: 800px;
+			}
+			/*
+			 0% 可以写成 from
+			 100% 可以写成 to
+			 只有0-100%
+			 * */
+		}
+		
+	</style>
+	<body>
+		<div class="container">
+			
+		</div>
+		
+		<script>
+			let dom = document.querySelector('.container')
+			dom.onclick = function(){
+				console.log(dom.style.width)
+				
+				dom.style.width = 800 +'px'
+
+				
+			}
+
+		</script>
+	</body>
+</html>

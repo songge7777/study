@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//遍历对象和数组
+			function forEach(obj,fn){
+				var key
+				if(obj instanceof Array){
+					obj.forEach(function(item,index){
+						fn(index,item)
+					})
+				}else{
+					for(key in obj){
+						if(obj.hasOwnProperty(key)){
+							fn(key,obj[key])
+						}
+					}
+				}
+			}
+			var arr=[11,22,33]
+			forEach(arr,function(item,index){
+				console.log(item,index)
+			})
+			var obj={x:100,y:200}
+			forEach(obj,function(item,index){
+				console.log(item,index)
+			})
+		</script>
+	</body>
+</html>

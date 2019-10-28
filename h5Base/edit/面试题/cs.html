@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<ul class="list1">
+		<li><span class="del">xxxxx</span></li>
+		<li><span class="del">xxxxx</span></li>
+		<li><span class="del">xxxxx</span></li>
+		<li><span class="del">xxxxx</span></li>
+		<li><span class="del">xxxxx</span></li>
+	</ul>
+	<ul class="list2">
+		<li><span class="del">xxxxx</span></li>
+		<li><span class="del">xxxxx</span></li>
+		<li><span class="del">xxxxx</span></li>
+		<li><span class="del">xxxxx</span></li>
+		<li><span class="del">xxxxx</span></li>
+	</ul>
+	<script type="text/javascript">
+		class List{
+			constructor(sel){
+				let self = this
+				this.el = Array.from(document.querySelectorAll(sel))
+				console.log(this.el)
+				this.el.forEach(function(item){
+					item.addEventListener('click',function(e){
+						if(e.target.matches('.del')){
+							self.removeItem.call(self,e.target)
+						}
+					})
+				})
+				
+			}
+			removeItem(target){
+				let self = this
+				let parentFind = function(node){
+					let parent = node.parentNode
+					let root = self.el.find(item => item === parent)
+					if(root){
+						parent.removeChild(node)
+					}else{
+						parentFind(parent)
+					}
+				}
+				parentFind(target)
+			}
+		}
+		window.addEventListener('DOMContentLoaded',function(){
+			new List('.list2')
+		})
+	</script>
+</body>
+</html>

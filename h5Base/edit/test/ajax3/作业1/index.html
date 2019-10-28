@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="ajax.js"></script>
+		<script>
+			
+			ajax({
+				url:'test.json?a=1',
+				//method:'get',
+				//dataType:'json',
+				data:{
+					'user':'张三',
+					'age':30
+				},
+				success:function(data){
+					console.log('success服务器返回的数据是:',data);
+				},
+				error:function(status){
+					console.log('error服务器报错了，状态码是：',status);
+				}
+			});
+			
+		</script>
+	</body>
+</html>

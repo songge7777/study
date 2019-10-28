@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr=[1,54,33,22,13,12]
+
+
+			function fn(arr){
+				var i,j,k;				
+				for(i=0;i<arr.length-1;i++){
+
+					for(j=0;j<arr.length-1-i;j++){
+						if(arr[j]>arr[j+1]){
+							k = arr[j+1]
+							arr[j+1] = arr[j]
+							arr[j] = k
+
+						}
+					}
+				}
+					return arr
+				
+			}
+			console.log(fn(arr))
+		</script>
+	</body>
+</html>

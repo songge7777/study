@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input id="search" type="text" />
+		<ul id="list" style="display: none;">
+			
+		</ul>
+		<script>
+			document.addEventListener('DOMContentLoaded',function(){
+				
+				var input=document.getElementById('search');
+				var ul=document.getElementById('list');
+				
+				input.onkeyup=function(){
+					var script=document.createElement('script');
+					//https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=html&cb=jQuery1102003670028612755871_1498478364694&_=1498478364707
+					script.src='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value+'&cb=fn1&_='+(+new Date());
+					document.body.appendChild(script);
+					
+					//移除掉刚才追加的script标签
+					document.body.removeChild(script);
+					
+					
+				};
+				
+			});
+			
+			
+			function fn1(data){
+				console.log(data);
+				var ul=document.getElementById('list');
+				var str='';
+				var result=data.s;
+				if(!result.length){
+					ul.style.display='none';
+					ul.innerHTML='';
+				}else{
+					ul.style.display='block';
+					for(var i =0; i<result.length;i++){
+						str+='<li>'+result[i]+'</li>';
+					}
+					ul.innerHTML=str;
+				}
+				
+			}
+			
+			
+		</script>
+		
+		<!--<script id='test' src=""></script>-->
+	</body>
+</html>

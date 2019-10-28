@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	
+	
+	<form action='cs.html' id="myform">
+		请输入：<input type="text" name="userName" value="" /> <br />
+		密码：<input type="password" name="password" value="" />
+		<br /><hr />
+		单选：	<br />	
+		<input type="radio" name="radio" value="11" id="bt1" />
+		<label for="bt1">1111111</label> <br />
+		<input type="radio" name="radio" value="22" id="bt2" />
+		<label for="bt2">333333333</label> <br />
+		多选：<br />
+		<input type="checkbox" name="checkbox" id="btn1" value="sss" />
+		<label for="btn1">sss</label>
+		<input type="checkbox" checked="checked" name="checkbox" id="btn2" value="aaa" />
+		<label for="btn2">aaa</label>
+		<input type="checkbox" name="checkbox" id="btn3" value="ddd" />
+		<label for="btn3">ddd</label>
+		
+		<select name="sel">
+			<option value="cs11">11</option>
+			<option value="cs22">22</option>
+			<option value="cs33">33</option>
+		</select>
+		
+		<button type="submit">提交</button>
+		<input type="button" name="btn" id="" value="普通按钮" />
+	</form>
+	
+	<script type="text/javascript">
+		var myform=document.getElementById('myform');
+			myform.btn.onclick = function(){
+				//console.log(myform.userName.value)
+				//console.log(myform.password.value)
+//				var arr=[];
+//				for (var i=0;i<myform.checkbox.length;i++){
+//					if(myform.checkbox[i].checked){
+//						arr.push(myform.checkbox[i].value)						
+//					}
+//				}
+//				console.log(arr)
+//					
+//				myform.sel.selectedIndex = 2
+				//myform.sel.value = 'cs22'
+				console.log(myform.sel.value)
+			}
+	</script>
+</body>
+</html>

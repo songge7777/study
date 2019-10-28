@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="list">
+			
+		</ul>
+		
+		<!--template是一个h5的标签，它是默认display:none-->
+		<!--把{0} 当作一个占位符，后面用正则来替换掉占位符-->
+		<template id="tpl-list">
+			<li>{0}{1}{2}</li>
+		</template>
+		
+		<script>
+			/*String.prototype.myformat=function(data1,data2,data3){
+				//arguments
+				//console.log(this)
+				return this.replace(/\{0\}/,data1);
+			}*/
+			String.prototype.myformat=function(){
+				if(arguments.length===0)return this;//if后面只有一行代码，花括号可以省略
+				var s=this;
+				for(var i=0;i<arguments.length;i++){
+					
+					s=s.replace(new RegExp('\\{'+i+'\\}','g'),arguments[i]);
+					/*s.replace(/\{0\}/,arguments[0])
+					s.replace(/\{1\}/,arguments[1])
+					s.replace(/\{2\}/,arguments[2])*/
+				}
+				
+				return s;
+				
+				//console.log(this)
+				//return this.replace(/\{0\}/,data1);
+			}
+			
+			
+			var arr=['red','yellow','blue','green'];
+			//拼接字符串
+			var tplStr=document.getElementById('tpl-list').innerHTML;
+			document.getElementById('list').innerHTML=tplStr;
+			
+			console.log(tplStr.myformat('red',' blue',' yellow'));//<li>red</li>
+		</script>
+	</body>
+</html>

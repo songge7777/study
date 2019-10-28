@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<script type="text/javascript">
+		//forEach
+		var a=[1,2,3,4,5,6]
+		a.forEach(function(item,index){
+			console.log(item)
+		})
+		//every
+		var arr=[1,2,3,4]
+		var result=arr.every(function(item,index){
+			if(item>2){return true}
+		})
+		console.log(result)
+		//some
+		var arr1=[1,2,3,4]
+		var result1=arr1.some(function(item,index){
+			if(item>2){return true}
+		})
+
+		console.log(result1)
+		//sort
+		var arr2=[1,23,32,5,4,6]
+		var result2=arr2.sort(function(a,b){
+			return a-b
+		})
+		console.log(arr2)
+		//map
+		var arr3=[1,4,6,8]
+		var result3=arr3.map(function(item,index){
+			return '<b>'+item+index+'</b>'
+		})
+		console.log(result3)
+		//filter
+		var arr4=[1,2,3,4,5]
+		var reslut4=arr4.filter(function(item,index){
+			if(item>2){return true}
+		})
+		console.log(reslut4)
+	</script>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" class="input" value="" />
+		<ul class="list" style="display: none;">
+		</ul>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded',function(){
+				let input = document.querySelectorAll('.input')[0]
+
+				
+				input.onkeyup = function(){
+					var scr=document.createElement('script')
+					//https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd= &cb= &_=1521645710803
+					scr.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value+'&cb=fn1&_='+(new Date());				
+					
+					document.body.appendChild(scr);
+					
+					document.body.removeChild(scr)
+				}
+
+				
+			})
+			
+//			function fn1(data){
+//				console.log(data);
+//				var ul=document.getElementById('list');
+//				var str='';
+//				var result=data.s;
+//				if(!result.length){
+//					ul.style.display='none';
+//					ul.innerHTML='';
+//				}else{
+//					ul.style.display='block';
+//					for(var i =0; i<result.length;i++){
+//						str+='<li>'+result[i]+'</li>';
+//					}
+//					ul.innerHTML=str;
+//				}
+//				
+//			}
+			
+			function fn1(data){
+				console.log(data)
+				let list = document.querySelectorAll('.list')[0]
+				let result = data.s
+				let str=''
+				if(!result.length){
+					list.style.display = 'none'
+					list.innerHTML = ''
+				}else{
+					list.style.display = 'block'
+					for (var i=0;i<result.length;i++) {
+						str+= '<li>'+result[i]+'</li>'
+					}
+					list.innerHTML= str
+				}
+			}
+		</script>
+	</body>
+</html>

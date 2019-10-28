@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="div1">
+			<a class="a1">a.html</a>
+			<a class="a1">b.html</a>
+		</div>
+		<script type="text/javascript">
+			//history
+//		document.querySelectorAll('.a1').forEach(item=>{
+//			item.addEventListener('click',function(e){
+//				e.preventDefault();
+//				let link = item.innerHTML
+//				window.history.pushState({name:'sg'},'标题',link)
+//			},false)
+//		})
+//		window.addEventListener('popstate',(e)=>{
+//				console.log({
+//					location:location.href,
+//					state:e.state
+//				})
+//		},false)
+		
+		
+		//Hash
+		document.querySelectorAll('.a1').forEach(item=>{
+			item.addEventListener('click',function(e){
+				e.preventDefault();
+				let link = item.innerHTML
+				location.hash = link
+			},false)
+		})
+		window.addEventListener('hashchange',(e)=>{
+				console.log({
+					location:location.href,
+					hash:location.hash
+				})
+		},false)
+		</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//输入 ['a',['b','c'],2,['d','e','f'],g,3,4] 
+			//输出 a,b,c,2,d,e,f,g,3,4
+
+			function flat(arr){
+				let result = []
+				let sg = function (arr){
+					arr.forEach(item => {
+						if(item instanceof Array){
+							sg(item)
+						}else{
+							result.push(item)
+						}
+					})
+				}
+				sg(arr)
+				return result.join(',')
+			}
+			let arr=['a',['b','c'],2,['d','e','f'],'g',3,4]
+			console.log(flat(arr))
+		</script>
+	</body>
+</html>

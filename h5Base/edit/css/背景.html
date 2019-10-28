@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#span1{
+				display: inline-block;
+				width: 200px;
+				height: 200px;
+				background-position: center center;
+				background: url(../11.jpg);
+			}		
+			#span2{
+				display: inline-block;
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				left: 0;
+				background-position: center center;
+				clip-path: circle( 150px at 0px 0px); 
+				background: url(../1.png);
+				transition: clip-path 3s;
+			}	
+			#span2:hover{
+				clip-path: circle( 250px at 0px 0px); 
+			}			
+		</style>
+	</head>
+	<body>
+		<span id="span1">
+
+		</span>
+		<span id="span2">
+			
+		</span>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<div class="div1">
+		<a href="#11" class="a1">immco</a>
+		<p class="p1">p1</p>
+		<p class="p2">p2 17688402185</p>
+		
+	</div>
+	<script type="text/javascript">
+		function bindEvent(elem,type,selector,fn){
+			if(!fn){
+				fn = selector
+				selector = null
+			}
+			elem.addEventListener(type,function(e){
+				if(selector){
+					var target = e.target
+					if(target.matches(selector)){						
+						fn.call(target,e)
+					}
+				}else{
+					fn(e)
+				}
+			})
+		}
+		//代理
+		var div1 = document.getElementsByClassName('div1')[0]
+		bindEvent(div1,'click','p',function(e){
+			console.log(this.innerHTML)
+		})
+		//非代理
+		var a1 = document.getElementsByClassName('a1')[0]
+		bindEvent(a1,'click',function(e){
+			console.log(a1.innerHTML)
+		})
+	</script>
+</body>
+</html>

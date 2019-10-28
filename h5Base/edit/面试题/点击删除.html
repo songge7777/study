@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul class="list">
+			<li><span class="del">x</span></li>
+			<li><span class="del">x</span></li>
+			<li><span class="del">x</span></li>
+			<li><span class="del">x</span></li>
+			<li><span class="del">x</span></li>
+		</ul>
+		<ul class="list">
+			<li><span class="del">x</span></li>
+			<li><span class="del">x</span></li>
+			<li><span class="del">x</span></li>
+			<li><span class="del">x</span></li>
+			<li><span class="del">x</span></li>
+		</ul>
+		<script type="text/javascript">
+			class List{
+				constructor(sel){
+					this.el = 	Array.from(document.querySelectorAll(sel))
+					let self = this
+					this.el.forEach(item => {
+						item.addEventListener('click',function(e){
+							console.log(e.target.matches('.del'))
+							if(e.target.matches('.del')){
+								self.removeItem.call(self,e.target)
+							}
+						})
+					})
+				}
+				removeItem(target){
+					let self = this
+					let findParent = function(node){
+						let parent = node.parentNode
+						let root = self.el.find(item => parent === item)
+						if(root){
+							root.removeChild(node)
+						}else{
+							findParent(parent)
+						}
+					}
+					findParent(target  )
+				}
+			}
+			window.addEventListener('DOMContentLoaded',function(){
+				new List('.list')
+			})
+		</script>
+	</body>
+</html>

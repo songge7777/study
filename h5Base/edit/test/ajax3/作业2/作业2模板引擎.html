@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="work2.css"/>
+	</head>
+	<body>
+		<div id="screening">
+			
+			<!--头部-->
+			<div class="screening-head clearfix">
+				<!--左右切换按钮-->
+				<div class="ul-slide-control">
+                    <span class="prev-btn"><a class="btn-prev" href="javascript:void(0)"></a></span>
+                    <span class="next-btn"><a class="btn-next" href="javascript:void(0)"></a></span>
+                </div>
+                
+                <!--当前页数/总共页数-->
+                <div class="slide-tip">
+                	<span class="ui-slide-index">1</span> 
+                	/ <span class="ui-slide-max">5</span>
+                </div>
+                
+			</div>
+			
+			<!--热映电影展示区域-->
+			<div class="screening-body">
+				<ul class="ul-slide-content">
+					
+					
+					
+				</ul>
+			</div>
+			
+		</div>
+		
+		<!--将模板html放入到template标签中-->
+		<template id="tpl-screening">
+			{@each subjects as item}
+			<li class="ul-slide-item">
+				<!--封面-->
+				<div class="cover">
+					<a href="${item.url}">
+						<img src="${item.cover}"/>
+					</a>
+				</div>
+				
+				<!--电影名称-->
+				<div class="title">
+					<a href="${item.url}">${item.title}</a>
+				</div>
+				
+				<!--评分-->
+				<div class="rating">
+					<span class="rating-star">
+						<span style="width: ${item.rate/10*100}%;"></span>
+					</span>
+					<span class="subject-rate">${item.rate}</span>
+				</div>
+				
+				<!--购票按钮-->
+				<div class="ticket_btn">
+					<span><a href="javascript:void(0)">选座购票</a></span>
+				</div>
+			</li>
+			{@/each}
+		</template>
+		
+		<script src="../jquery-3.2.1.js"></script>
+		<script src="js/juicer-min.js"></script>
+		<script>
+			
+			$(function(){
+				
+				$.ajax({
+					type:'get',
+					url:'data/screening.json',
+					async:true,
+					success:function(data){
+						var n=0;//记录当前展示的是第几页,默认是第0页
+						var count=data['subjects'].length;//总共有多少个电影海报
+						var max=Math.ceil(count/4)-1;//最大有多少页，从0开始算的,所以要减去1
+						
+						var tplStr=$('#tpl-screening').html();
+						
+						//调用榨汁机  榨模板
+						var str=juicer(tplStr,data);
+						
+						/*$.each(data, function() {
+							//this
+							str+=tplStr.format(this['url'],this['cover'],this['url'],this['title'],this['rate'],this['rate']/10*100);
+						});*/
+						
+						
+						
+						$('.ul-slide-content').html(str);
+						
+						//给li的父级计算宽度
+						$('.ul-slide-content').css('width',count*147.5);
+						
+						
+						
+						$('.ui-slide-max').html(max+1);//因为普通用户的页数是从第1页开始算的
+						//添加事件
+						//上一页
+						$('.btn-prev').on('click',function(){
+							n--;
+							changeSlide();
+						});
+						
+						//下一页
+						$('.btn-next').on('click',function(){
+							n++;
+							changeSlide();
+						});
+						
+						function changeSlide(){
+							if(n<0){
+								n=0;
+							}
+							if(n>max){
+								n=max;
+							}
+							$('.ui-slide-index').html(n+1);
+							//$('.ul-slide-content').css({'left':-590})
+							$('.ul-slide-content').stop().animate({'left':-590*n},1000);
+						}
+						
+						
+						
+					}
+				});
+				
+				
+			});
+			
+			
+			
+		</script>
+	</body>
+</html>

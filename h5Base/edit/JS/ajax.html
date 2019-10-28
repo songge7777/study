@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="https://ws1.sinaimg.cn/large/610dc034ly1fjxu5qqdjoj20qo0xc0wk.jpg"/>
+	</body>
+	<script type="text/javascript">
+		var xhr=new XMLHttpRequest()
+		var user;
+		xhr.open('GET','https://www.apiopen.top/meituApi?page='+2,false);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				if(xhr.status === 200){
+					var item;
+					console.log(xhr.responseText)
+					var result =JSON.parse(xhr.responseText)
+					console.log(result.data)
+					console.log(Object.keys(result.data))
+					for (item in result.data){
+						console.log(result.data[item])
+					}
+				}
+			}
+		}
+		xhr.send();
+//		
+//		var xhr = new XMlhttpquest();
+//		xhr.open('get','baidu')
+//		xhr.onload = function(){
+//			if(xhr.status === 200){
+//				xhr.responseText
+//			}
+//		}
+	</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="list">
+			
+		</ul>
+		
+		<script id="tpl-list" type="text/template">
+		  {@each colorArr as it,index}
+		  	 <li>${it}</li>
+  	      {@/each}
+		</script>
+		<!--
+		<template>
+			模板字符串放这里
+		</template>
+		<textarea style="display: none;">
+			模板字符串放这里
+		</textarea>
+		-->
+		<script src="js/juicer-min.js"></script>
+		<script>
+			//数据
+			var data={
+				colorArr:['red','yellow','blue','pink']
+			};
+			//模板字符串
+			var tpl = document.getElementById('tpl-list').innerHTML;
+			//调用榨汁机  
+			var str=juicer(tpl,data);
+			console.log(str);
+			document.getElementById('list').innerHTML=str;
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		.container{
+			width: 100px;
+			height: 100px;
+			background: red;
+			transition: width 2s , background 3s;
+			transition-timing-function: linear;
+			/*
+			 width 可以写成all 就是所有属性
+			 * */
+			/*transition-delay:1s*/
+			/*transition 是一个缩写
+			 transition-delay 延迟一秒
+			transition-timing-function: 
+				linear; 这个是匀速运动
+			 	ease-in-out; 慢-快-慢
+			 	贝塞尔曲线
+			 	cubic-bezier:(0.465,-0.460,0.525,1.435)
+			网站：https:matthewlein.com
+			 * */;
+			
+		}
+		/*.container:hover{
+			width: 800px;
+			background: green;
+		}*/
+	</style>
+	<body>
+		<div class="container">
+			
+		</div>
+		
+		<script>
+			let dom = document.querySelector('.container')
+			dom.onclick = function(){
+				console.log(dom.style.width)
+				
+				dom.style.width = 800 +'px'
+
+				
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="jquery-3.2.1.js"></script>
+		<script>
+			$.ajax({
+				type:"post",//请求方式(hbuilder的服务器不支持post请求)
+				url:"作业1/test.json",//请求地址
+				dataType:'json',
+				async:true,//异步还是同步
+				//前端传给后端的数据
+				data:{
+					'name':'张三',
+					'age':30
+				},
+				success:function(data){
+					console.log('成功后获取到数据了',data)
+				},
+				error:function(error){
+					console.log('失败了',error)
+				}
+			});
+			
+			
+		</script>
+	</body>
+</html>

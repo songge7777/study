@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<section style="overflow: hidden;">
+		<style type="text/css">
+			.one1 .left{
+				float: left;
+				width: 100px;
+				height: 70px;
+				background: #008000;
+			}
+			.one1 .center{
+				
+				background: springgreen;
+			}
+			.one1 .right{
+				float: right;
+				width: 100px;
+				height: 70px;
+				background: red;				
+			}
+		</style>
+		<article class="one1">
+			<div class="right">
+				right
+			</div>
+			<div class="left">
+				left
+			</div>
+			<div class="center">
+				center
+			</div>
+			
+		</article>
+	</section>
+
+	<section style="margin-top: 100px; margin-bottom: 200px;">
+		<style type="text/css">
+			.one2 div{
+				position: absolute;
+			} 
+			.one2 .left{
+				width: 100px;
+				height: 70px;
+				left: 0;
+				background: red;
+			}
+			.one2 .right{
+				width: 100px;
+				height: 70px;
+				right: 0;
+				background: salmon;
+			}
+			.one2 .center{
+				height: 70px;
+				left: 100px;
+				right: 100px;
+				background: springgreen;
+			}
+		</style>
+		<article class="one2">
+			<div class="left">
+				left
+			</div>
+			<div class="center">
+				center
+			</div>
+			<div class="right">
+				right
+			</div>
+			
+		</article>
+	</section>
+	
+	<section>
+		<style type="text/css">
+			.one3{
+				display: table;
+				width: 100%;
+				height: 70px;
+			}
+			.one3 div{
+				display:table-cell ;
+			}
+			.one3 .left{
+				width: 100px;
+				background: #008000;
+			}
+			.one3 .center{
+
+				background:red;
+			}
+			.one3 .right{
+				width: 100px;
+				background: #008000;
+			}
+		</style>
+		<article class="one3">
+			<div class="left">
+				left
+			</div>
+			<div class="center">
+				center
+			</div>
+			<div class="right">
+				right
+			</div>
+		</article>
+	</section>  
+	
+	<section style="margin-top: 20px;">
+		<style type="text/css">
+			.one4{
+				display: flex;
+			}
+			.one4 .left{
+				width: 100px;
+				height: 70px;
+				background: #008000;
+			}
+			.one4 .center{
+				flex:1;
+				height: 50px;
+				background: #0000FF;
+			}
+			.one4 .right{
+				height: 70px;
+				background: #7FFFD4;
+				width: 100px;
+			}
+		</style>
+		<article class="one4">
+			<div class="left">
+				left
+			</div>
+			<div class="center">
+				center
+			</div>
+			<div class="right">
+				right
+			</div>
+		</article>
+	</section>
+	
+	<section style="margin-top: 10px;">
+		<style type="text/css">
+			.one5{
+				display: grid;
+				width: 100%;
+				grid-template-rows:70px;
+				grid-template-columns:100px auto 100px;
+			}
+			.one5 .left{
+				background: red;
+			}
+			.one5 .center{
+				background: antiquewhite;
+			}
+			.one5 .right{
+				background: red;
+			}
+		</style>
+		<article class="one5">
+			<div class="left">
+				left
+			</div>
+			<div class="center">
+				center
+			</div>
+			<div class="right">
+				right
+		</article>
+			</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function M(){
+				this.name = '134'
+			}
+			var s=new M();
+		var new2 = function(obj){
+			var o1=Object.create(obj.prototype)
+			var o2=obj.call(o1)
+			if(typeof o2 === 'object'){
+				return o2
+			}else{
+				return o1
+			}
+		}
+		</script>
+	</body>
+</html>

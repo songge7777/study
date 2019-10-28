@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//1 通过构成函数实现继承
+//			function Parent(){
+//				this.name = 'name'
+//			}
+//			function Child(){
+//				Parent.call(this)
+//				this.type = 'child'
+//			}
+//			console.log(new Child().name)
+
+
+			//2 通过原型链
+//			function Parent(){
+//				this.name = ['name']
+//			}
+//			function Child(){
+//				this.type = 'child'
+//			}
+//			Child.prototype =new Parent()
+//			var s1 = new Child()
+//			var s2 = new Child()
+//			s1.name.push('s')
+//			console.log(s2.name)
+
+
+			//3.组合方式
+			function Parent(){
+				this.name = 'name'
+			}
+			function Child(){
+				Parent.call(this)
+				this.type = 'Child'
+			}
+			Child.prototype =new Parent()
+
+			//4.组合方式优化1
+			function Parent(){
+				this.name = 'name'
+			}
+			function Child(){
+				Parent.call(this)
+				this.type = 'Child'
+			}
+			Child.prototype = Parent.prototype
+			
+			//5.组合方式优化2
+			function Parent(){
+				this.name = 'name'
+			}
+			function Child(){
+				Parent.call(this)
+				this.type = 'Child'
+			}
+			Child.prototype = Object.create(Parent.prototype)
+			Child.prototype.constructor=Child
+						
+			
+		</script>
+	</body>
+</html>

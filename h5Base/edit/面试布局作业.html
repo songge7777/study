@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html *{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<section class="layout float">
+			<style type="text/css">
+				.top-center-bottom{
+					overflow: hidden;
+				}
+				.layout.float .top{
+					float: left;
+					height: 100px;
+					width: 100%;
+					background: red;
+				}
+				.layout.float .bottom{
+					float: right;
+					width: 100%;
+					height: 200px;
+					margin-bottom: 0;
+					background: darkgoldenrod;
+				}
+				.layout.float .center{
+					float: left;
+					width: 100%;
+					background: blue;
+				}
+			</style>
+			<article class="top-center-bottom">
+				<div class="top"></div>
+				<div class="center">
+					<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+				</div>
+				<div class="bottom"></div>
+			</article>
+		</section>-->
+		
+		
+		<!-- 绝对定位 -->
+		<!--<section class="layout absolute">
+			<style type="text/css">
+				.layout.absolute>.top-center-bottom>div{
+					position: absolute;					
+				}
+				.layout.absolute .top{
+					width: 100%;
+					height: 100px;
+					top: 0;
+					background: red;
+				}
+				.layout.absolute .center{
+					top: 100px;
+					width: 100%;	
+					background: green;
+				}
+				.layout.absolute .bottom{
+					width: 100%;
+					height: 100px;
+					bottom:0px;
+					background: springgreen;
+				}
+			</style>
+			<article class="top-center-bottom">
+				<div class="top"></div>
+				<div class="center">
+
+				</div>
+				<div class="bottom"></div>
+			</article>
+		</section>-->
+		
+		<!-- flexbox 定位 -->
+		<section class="layout flexbox">
+			<style type="text/css">
+				.top-center-bottom{
+
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+				}
+				.layout.flexbox .top{
+					width: 20px;
+					height: 20px;
+					background: red;
+				}
+				.layout.flexbox .bottom{
+width: 20px;
+					height: 20px;
+					background: green;
+				}
+				.layout.flexbox .center{
+
+					flex: 1;
+					height: 20px;
+
+					background: springgreen;
+				}
+			</style>
+			<article class="top-center-bottom"> 
+				<div class="top">
+					1
+				</div>
+				<div class="center">
+					2
+				</div>
+				<div class="bottom">
+					3
+				</div>
+			</article>
+		</section>
+			
+<!--		
+	<section class="layout table">
+			<style type="text/css">
+				.layout.table .right-left-center{
+					margin-top: 50px;
+					display: table;
+				}
+				.layout.table .right-left-center>div{
+					display: table-cell;
+				}
+				.layout.table .right{
+					width: 100%;
+					height: 100px;
+					background-color: yellow;
+				}
+				.layout.table .left{
+					width: 100%;
+					height: 100px;
+					background-color: red
+				}
+				.layout.table .center{
+					
+				}
+			</style>
+			<article class="right-left-center">
+				<div class="left"></div>
+				<div class="center">
+					<h3>table布局</h3>
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+				</div>
+				<div class="right"></div>
+			</article>
+		</section>-->
+	</body>
+</html>

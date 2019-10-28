@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//输入 ['a',['b','c'],2,['d','e','f'],g,3,4] 
+			//输出 a,b,c,2,d,e,f,g,3,4
+
+			let arr=['a',['b','c',[[1],[2,[3],4]]],2,['d','e','f'],'g',3,4]
+			Array.prototype.toString=function(){
+				return this.join(',')
+			}
+			function flat(arr){
+				return arr + ''
+			}
+			
+			console.log(flat(arr))
+
+//
+//
+//
+//			let arr=['a',['b','c'],2,['d','e','f'],'g',3,4]
+//			Array.prototype.valueOf=function(){
+//				return this.join(',')
+//			}
+//			function flat(arr){
+//				return arr + ''
+//			}
+//			console.log(flat(arr))
+//
+		</script>
+	</body>
+</html>

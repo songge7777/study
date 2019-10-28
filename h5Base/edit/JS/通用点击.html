@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<div class="div1">
+		<p class="p1">p11111</p>
+		<ul>
+			<li class="li1">li1</li>
+			<li class="li1">li1</li>
+			<li class="li1">li1</li>
+			<li class="li1">li1</li>
+			<li class="li1">li1</li>
+			<li class="li1">li1</li>
+			
+		</ul>
+	</div>
+	
+	<script type="text/javascript">
+		function bindEvent(elem,type,sel,fn){
+			if(!fn){
+				fn = sel 
+				sel = null
+			}
+			elem.addEventListener(type,function(e){
+				if(sel){
+				//代理
+					if(e.target.matches(sel)){
+						fn.call(e.target)
+					}
+				}else{
+					//非代理
+					fn()
+				}				
+			
+			})
+		}
+		var div=document.querySelectorAll('.div1')[0]
+		bindEvent(div,'click','.li1',function(e){
+			console.log(this.innerHTML)
+		})
+		var p1=document.querySelectorAll('.p1')[0]
+		bindEvent(p1,'click',function(e){
+			console.log(p1.innerHTML)
+		})
+	</script>
+</body>
+</html>

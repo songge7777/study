@@ -1,0 +1,84 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<!--浮动-->
+		<!--<section>   
+			<style type="text/css">
+				.left{
+					float: left;
+					width: 100px;
+					height: 70px;
+					background-color: red;
+				}
+				.right{
+					float: right;
+					width: 100px;
+					height: 70px;
+					background-color: red;
+				}
+				.center{	
+					background-color: springgreen;
+				}
+			</style>
+			<article class="one">
+				<div class="right">right</div>
+				<div class="left">left</div>
+				<div class="center">
+					浮动center
+				</div>
+				
+			</article>
+		</section>-->
+		<section class="sg">
+			<style type="text/css">
+				.sg{
+					height: 100%;
+				}
+				.one{
+					height: 100%;
+					float: left;
+					width: 100px;
+				}
+				.left{	
+					width: 100px;
+					height: 70px;
+					background-color: red;
+				}
+				.right{
+					width: 100px;
+					height: 70px;
+					background-color: red;
+				}
+				.center{
+					width: 100px;
+					min-height: calc(100% - 140px);	
+					background-color: springgreen;
+				}
+			</style>
+				<div class="left">left</div>
+					<div class="center">
+						浮动center <br />
+						浮动center <br />
+						浮动center <br />
+						浮动center <br />
+						浮动center <br />
+					</div>
+				<div class="right">right</div>
+			</article>
+		</section>
+	</body>
+</html>

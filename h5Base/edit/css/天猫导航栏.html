@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.row{
+			display: flex;
+			font-size: 12px;
+			line-height: 24px;
+		}
+		.row a{
+			text-decoration: none;
+			color: #666;
+		}
+		.row .item{
+			width: 0;
+			flex: 1;
+			text-align: center;
+		}
+		.row div a:before{
+			content: '';
+			display: block;
+			width: 60px;
+			height: 30px;
+			margin: 0 auto;
+			clip-path: circle(20px at 30px 15px);
+		}
+		.row:nth-child(1) div:nth-child(1) a:before{
+			background: url(../1.png) no-repeat ;
+			background-size: 60px 30px ;
+			
+		}
+		.row:nth-child(1) div:nth-child(2) a:before{
+			background: url(../1.png) no-repeat ;
+			background-size: 60px 30px ;
+			
+		} 
+		.row:nth-child(1) div:nth-child(3) a:before{
+			background: url(../1.png) no-repeat ;
+			background-size: 60px 30px ;
+			
+		} 
+		.row:nth-child(1) div:nth-child(4) a:before{
+			background: url(../1.png) no-repeat ;
+			background-size: 60px 30px ;
+			
+		}  
+
+
+
+
+		.row:nth-child(2) div:nth-child(1) a:before{
+			background: url(../1.png) no-repeat ;
+			background-size: 60px 30px ;
+			
+		}
+		.row:nth-child(2) div:nth-child(2) a:before{
+			background: url(../1.png) no-repeat ;
+			background-size: 60px 30px ;
+			
+		} 
+		.row:nth-child(2) div:nth-child(3) a:before{
+			background: url(../1.png) no-repeat ;
+			background-size: 60px 30px ;
+			
+		} 
+		.row:nth-child(2) div:nth-child(4) a:before{
+			background: url(../1.png) no-repeat ;
+			background-size: 60px 30px ;
+			
+		}  
+				
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div class="item">
+			<a href="javascript:;">天猫1</a>
+		</div>
+		<div class="item">
+			<a href="javascript:;">天猫2</a>
+		</div>
+		<div class="item">
+			<a href="javascript:;">天猫3</a>
+		</div>
+		<div class="item">
+			<a href="javascript:;">天猫4</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="item">
+			<a href="javascript:;">天猫a</a>
+		</div>
+		<div class="item">
+			<a href="javascript:;">天猫b</a>
+		</div>
+		<div class="item">
+			<a href="javascript:;">天猫c</a>
+		</div>
+		<div class="item">
+			<a href="javascript:;">天猫d</a>
+		</div>
+	</div>
+</body>
+</html>

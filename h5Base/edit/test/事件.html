@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			a{
+				background: red;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<a class="a1">a11111</a>
+			<p class="p1">p11</p>
+			<p class="p2">p22</p>
+		</div>
+		<script type="text/javascript">
+			function bindEvent(elem,type,selector,fn){
+				if(!fn){
+					fn = selector
+					selector = null
+				}
+				elem.addEventListener(type,function(e){
+					if(selector){
+						var target=e.target
+						if(target.matches(selector)){
+							fn.call(target,e)
+						}
+					}else{
+						fn(e)
+					}
+				})
+			}
+			var p1=document.getElementsByClassName('p1')[0]
+			bindEvent(p1,'click',function(e){
+				console.log('p111111111',p1.innerHTML)
+			})
+			var p2=document.getElementsByClassName('p2')[0]
+			bindEvent(p2,'click','.p2',function(e){
+				console.log('p22222222',this.innerHTML)
+			})
+		</script>
+	</body>
+</html>

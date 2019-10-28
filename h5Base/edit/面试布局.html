@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html *{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="layout float">
+			<style type="text/css">
+				.layout.float .right{
+					width: 300px;
+					height: 70px;
+					float: right;
+					background: red;
+				}
+				.layout.float .left{
+					width: 300px;
+					height: 70px;
+					float: left;
+					background: yellow;
+				}
+				.layout.float .center{
+					
+					background: green;
+					
+				}
+			</style>
+			<article class="right-left-center">
+				<div class="right"></div>
+				<div class="left"></div>
+				<div class="center">
+					<h3>浮动布局</h3>
+					三栏式布局，浮动解决方案
+					三栏式布局，浮动解决方案
+					三栏式布局，浮动解决方案
+					三栏式布局，浮动解决方案
+					三栏式布局，浮动解决方案
+					三栏式布局，浮动解决方案
+					<p>11111111</p>
+					<p>11111111</p>
+					<p>11111111</p>
+					<p>11111111</p>
+					<p>11111111</p>
+				</div>
+			</article>	
+		</section>
+		
+		<section class="layout absolute">
+			<style type="text/css">
+				.layout.absolute .right-left-center>div{
+					position: absolute;
+					margin-top: 500px;
+				}
+				.layout.absolute .left{
+					width: 300px;
+					height: 70px;
+					left: 0;
+					background-color: red;
+				}
+				.layout.absolute .right{
+					width: 300px;
+					height: 70px;
+					right: 0;
+					background-color: green;
+				}
+				.layout.absolute .center{
+					height: 70px;
+					left: 300px;
+					right: 300px;
+					background-color: yellow;
+				}
+			</style>
+			<article class="right-left-center">
+				<div class="left"></div>
+				<div class="right"></div>
+				<div class="center">
+					<h3>定位布局</h3>
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+				</div>
+			</article>
+		</section>
+		<section class="layout flexbox">
+			<style type="text/css">
+				.layout.flexbox .right-left-center{
+						display: flex;
+						margin-top: 40px;
+				}
+				.flexbox .right{
+					width: 300px;
+					height: 100px;
+					background-color: red;
+				}
+				.flexbox .left{
+					width: 300px;
+					height: 100px;
+					background-color: green;
+				}
+				.flexbox .center{
+					height: 100px;
+					background-color: yellow;
+					flex: 1;
+				}
+			</style>
+			<article class="right-left-center">
+				<div class="left"></div>
+				<div class="center">
+					<h3>flexbox布局</h3>
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+				</div>
+				<div class="right"></div>
+			</article>
+		</section>
+		
+		
+		<section class="layout table">
+			<style type="text/css">
+				.layout.table .right-left-center{
+					margin-top: 50px;
+					width: 100%;
+					height: 30px;
+					display: table;
+				}
+				.layout.table .right-left-center>div{
+					display: table-cell;
+				}
+				.layout.table .right{
+					width: 300px;
+					background-color: yellow;
+				}
+				.layout.table .left{
+					width: 300px;
+					background-color: red
+				}
+				.layout.table .center{
+					
+				}
+			</style>
+			<article class="right-left-center">
+				<div class="left"></div>
+				<div class="center">
+					<h3>table布局</h3>
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+					三栏式布局，定位解决方案
+				</div>
+				<div class="right"></div>
+			</article>
+		</section>
+		
+		    <!-- 网格布局 -->
+    <section class="layout grid">
+      <style>
+			.layout.grid .right-left-center{
+				margin-top: 20px;
+				width: 100%;
+				display: grid;
+				grid-template-rows:70px;
+				grid-template-columns: 300px auto 300px;
+				
+			}
+			 .layout.grid .left{
+
+	          background: red;
+	        }
+	        .layout.grid .center{
+	          background: yellow;
+	        }
+	        .layout.grid .right{
+	          background: blue;
+	        }
+      </style>
+
+      <article class="right-left-center">
+        <div class="left"></div>
+        <div class="center">
+          <h2>网格布局解决方案</h2>
+          1.这是三栏布局的浮动解决方案；
+          2.这是三栏布局的浮动解决方案；
+          3.这是三栏布局的浮动解决方案；
+          4.这是三栏布局的浮动解决方案；
+          5.这是三栏布局的浮动解决方案；
+          6.这是三栏布局的浮动解决方案；
+        </div>
+        <div class="right"></div>
+      </article>
+    </section>
+	</body>
+</html>

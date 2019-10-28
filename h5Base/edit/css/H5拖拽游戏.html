@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				display: flex;
+				flex-wrap: wrap;
+				width: 300px;
+				height: 300px;
+			}
+			li{
+				box-sizing: border-box;
+				width: 100px;
+				height: 100px;
+				border: 1px solid ghostwhite;
+				background: red;
+				list-style:  none;
+				line-height: 100px;
+				text-align: center;
+			}
+			#li1{
+				background: saddlebrown;
+			}
+			#li2{
+				background: springgreen;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li draggable="true" id="li1">11</li>
+			<li draggable="true" id="li2">22</li>
+			<li draggable="true" id="li3">33</li>
+			<li draggable="true" id="li4">44</li>
+			<li draggable="true" id="li5">5</li>
+			<li draggable="true" id="li6">6</li>
+			<li draggable="true" id="li7">77</li>
+			<li draggable="true" id="li8">88</li>
+			<li draggable="true" id="li9">99</li>
+		</ul>
+		<script type="text/javascript">
+			window.addEventListener('DOMContentLoaded',function(){
+				var liList = document.querySelectorAll('li')
+				liList.forEach(item => {
+					item.ondragstart=function(e){
+						e.dataTransfer.setData('liId',this.id)
+					}
+				})
+				liList.forEach(item => {
+					item.ondragover=function(e){
+						e.preventDefault()
+					}
+				})
+				liList.forEach(item => {
+					item.ondrop = function(e){
+						//获取第一次点击的ID
+						var liId = e.dataTransfer.getData('liId')
+						var li1 = document.getElementById(liId)
+						//目标元素的ID
+						var liId2 = this.id
+						var li2 =this
+						
+						//互换ID
+						li1.setAttribute('id',liId2)
+						li2.setAttribute('id',liId)
+						//互换文本
+						
+						var t = li1.innerHTML
+						li1.innerHTML = li2.innerHTML
+						li2.innerHTML = t
+					}
+				})
+				
+			})
+		</script>
+	</body>
+</html>

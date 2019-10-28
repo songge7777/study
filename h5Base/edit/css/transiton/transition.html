@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.container{
+				margin: 50px;
+				padding: 10px;
+				border: 1px solid red;
+				width: 200px;
+				height: 200px;
+				position: relative;
+				/*透视*/
+				perspective: 500px;
+			}
+			#cube{
+				width: 200px;
+				height: 200px;
+				transform-style: preserve-3d;
+				transition: transform 10s;
+			}
+			#cube div{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				line-height: 200px;
+				font-size: 50px;
+				text-align: center;
+				
+			}
+			#cube:hover{
+				transform:  rotateX(360deg) rotateY(360deg);
+			}
+			.div1{
+
+				
+				opacity: 0.9;
+				background: url(img/1.jpg) ;
+				transform: translateZ(100px);
+				background-size: contain ;
+				
+			}
+			.div2{
+
+				opacity: 0.9;
+				background: url(img/2.jpg) ;
+				transform: translateZ(-100px);
+				background-size: contain ;
+				
+			}
+			.div3{
+
+				
+				opacity: 0.9;
+				background: url(img/3.jpg);
+				transform: translateX(-100px) rotateY(90deg);
+				background-size: contain ;
+				
+			}
+			.div4{
+
+				
+				opacity: 0.9;
+				background: url(img/4.jpg) ;
+				transform: translateX(100px) rotateY(270deg);
+				background-size: contain ;
+				
+			}
+			.div5{
+
+				
+				opacity: 0.9;
+				background: url(img/5.jpg) ;
+				
+				transform: translateY(-100px) rotateX(270deg);
+				background-size: contain ;
+				
+			}
+			.div6{
+
+				
+				transform: translateY(100px) rotateX(90deg);
+				opacity: 0.9;
+				background: url(img/6.jpg) ;
+				background-size: contain ;
+				
+			}
+			#ss{
+				background: url(img/1.jpg) ;
+				width: 100px;
+				height: 100px;
+				background-size: contain ;
+			}
+		</style>
+	</head>
+	<body>
+		<p id="ss">
+			
+		</p>
+		<div class="container">
+			<div id="cube">
+				<div class="div1">
+					1
+				</div>
+				<div class="div2">
+					2
+				</div>
+				<div class="div3">
+					3
+				</div>
+				<div class="div4">
+					4
+				</div>
+				<div class="div5">
+					5
+				</div>
+				<div class="div6">
+					6
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

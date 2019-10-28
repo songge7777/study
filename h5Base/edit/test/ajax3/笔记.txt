@@ -1,0 +1,6 @@
+关于编码的3个方法
+http://www.cnblogs.com/tylerdonet/p/3483836.html
+
+js模板引擎 ：http://www.cnblogs.com/guohu/p/3870677.html
+
+juicer:  http://www.juicer.name/
