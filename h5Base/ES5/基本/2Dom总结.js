@@ -184,6 +184,31 @@
 		在读取文本模式下 同上
 		在写入 把本身也会覆盖
 
-
+  cookie
+  function getCookie(){
+      let data = {}
+      let cookies = document.cookie
+      cookies.replace(/(\w+)=(\w+)/g,($0,$1,$2,$3)=>{
+        data[$1] = $2
+      })
+        return data
+    }
+    // 设置
+    function setCookie(key,value,maxAge){
+      let rs;
+      if(maxAge){
+       rs = `${key}=${value};max-age=${maxAge}`
+      }else{
+       rs = `${key}=${value}`
+      }
+      document.cookie=rs
+    }
+    // 清除所有
+    function clear(){
+      let getCookies = getCookie()
+      for(let i in getCookies){
+        setCookie(i,getCookies[i],1)
+      }
+    }
 
 */

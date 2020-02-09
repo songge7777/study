@@ -35,11 +35,13 @@
     git.enabled: false
 
     git.autorefresh: false
-
-
-
-
+  
+  3、常用插件
+  - Bracket Pair Colorizer
+    让代码 {} 颜色区分
+  - Code Spell Checker
+    检查 单词拼写
+、
 
 */
-
 

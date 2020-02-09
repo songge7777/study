@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="http://192.168.1.6:8081/target/target-script-min.js#anonymous"></script>
-    <!-- <script src="http://192.168.1.6:8081/target/target-script-min.js#anonymous"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://192.168.1.6:8081/target/target-script-min.js#anonymous"></script>
+  <!-- <script src="http://192.168.1.6:8081/target/target-script-min.js#anonymous"></script> -->
 </head>
+
 <body>
-    ajax1111111111
-    <script>
-        let xhr = new XMLHttpRequest()
-        xhr.open('get',"http://localhost:4000",true)
-        
-        // 设置cookie
-        document.cookie = 'name=asdadsa'
-        xhr.withCredentials = true
-        //设置请求头
-        xhr.setRequestHeader('name','sg1')
-       
-        xhr.onreadystatechange = ()=>{
-            if(xhr.readyState === 4){
-                if(xhr.status>=200 && xhr.status < 300){
-                    console.log('获取响应内容',xhr.responseText)
-                    console.log('获取请求头',xhr.getResponseHeader('name'))
-                    console.log('获取请求头',xhr.getResponseHeader('ss'))
-                }
-            }
+  ajax1111111111
+  <script>
+    let xhr = new XMLHttpRequest()
+    xhr.open('get', "http://localhost:4000", true)
+
+    // 设置cookie
+    document.cookie = 'name=asdadsa'
+    xhr.withCredentials = true
+    //设置请求头
+    xhr.setRequestHeader('name', 'sg1')
+
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          console.log('获取响应内容', xhr.responseText)
+          console.log('获取请求头', xhr.getResponseHeader('name'))
+          console.log('获取请求头', xhr.getResponseHeader('ss'))
         }
-        xhr.send()
-    </script>
+      }
+    }
+    xhr.send()
+  </script>
 </body>
+
 </html>

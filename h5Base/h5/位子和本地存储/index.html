@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  1231111111111
+  <script>
+    // 获取
+    function getCookie(){
+      let data = {}
+      let cookies = document.cookie
+      cookies.replace(/(\w+)=(\w+)/g,($0,$1,$2,$3)=>{
+        data[$1] = $2
+      })
+        return data
+    }
+    // 设置
+    function setCookie(key,value,maxAge){
+      let rs;
+      if(maxAge){
+       rs = `${key}=${value};max-age=${maxAge}`
+      }else{
+       rs = `${key}=${value}`
+      }
+      document.cookie=rs
+    }
+    // 清除所有
+    function clear(){
+      let getCookies = getCookie()
+      for(let i in getCookies){
+        setCookie(i,getCookies[i],1)
+      }
+    }
+    setCookie('a','11')
+    clear()
+    
+</script>
+</body>
+</html>

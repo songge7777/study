@@ -1,12 +1,3 @@
-function SuperType() {
-  this.arr = []
-}
+window.resizeTo(100,100)
 
-function SubType() {}
-SubType.prototype = new SuperType()
-
-let r1 = new SubType()
-let r2 = new SubType()
-
-console.log(r1.constructor)
-console.log(r2 instanceof Object) 
+window.resizeBy(200,50)

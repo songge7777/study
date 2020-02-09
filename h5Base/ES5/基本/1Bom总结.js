@@ -123,4 +123,8 @@
       处理兼容
       var left = (typeof window.screenLeft == 'number') ? window.screenLeft : window.screenX
       var top = (typeof window.screenTop == 'number') ? window.screenTop : window.screenY
+    moveTo和moveBy 可以挪动到一个新的位子
+    moveTo接收新的位子xy 
+    moveBy接收的是水平和垂直方向上移动的像素(暂时没有测试出来)
+    
 */

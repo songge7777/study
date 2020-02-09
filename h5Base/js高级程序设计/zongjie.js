@@ -228,7 +228,6 @@
           
         // 这里注意 \\w  我们要他的\  里所有的第一个\代表转义 最终我们要得到(\w) 所以就是\\  
         let reg2 = new RegExp('\:\\w+', 'g')
-          r1 == r2
 
         let name = '/user/:uid/:name'.match(reg)
 
@@ -565,7 +564,6 @@
         }
       }
       obj.fn()() //the window  
-*/
 
 
 
