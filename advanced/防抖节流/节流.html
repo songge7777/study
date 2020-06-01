@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button{
+      width: 200px;
+      height: 50px;
+    }
+  </style>
+</head>
+<body>
+    <!-- 节流我快速点击 我可以配置1s内的点击算一次 -->
+    <button id='btn'>快速点击</button>
+    <script>
+      // 节流 throttle
+      function throttle(fn,wait){
+        let pre = 0;//上一次的默认值
+        return function(){
+          let now = Date.now()
+          if(now-pre>wait){
+            fn.apply(this,arguments)
+            pre = now
+          }
+        }
+      }
+      let btn = document.getElementById('btn')
+      function logger(){
+        console.log('11111')
+      }
+      btn.addEventListener('click',throttle(logger,1000))
+    </script>
+</body>
+</html>

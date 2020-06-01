@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      background: yellow;
+      color: red;
+      width: 100px;
+      height: 40px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 防抖 一直按只会触发一次 -->
+  <!-- 节流 一段时间只触发一次 -->
+
+  <div id='btn'>点击</div>
+  <script>
+      function fn(){
+        console.log('fn')
+      }
+      function throttle(fn,await,immediate){
+        let timeout;
+        return function(){
+          if(immediate){
+            if(!timeout){
+              fn.apply(this,arguments)
+            }
+          }
+          clearInterval(timeout)
+          timeout = setTimeout(()=>{
+            fn()
+          },await)
+        }
+      }
+
+      /*
+
+      1、new 关键字的 原理 
+
+      2、写一个函数add 实现下面功能
+        console.log(add(1, 2, 3, 4, 5));//15
+        console.log(add(1)(2, 3)(4, 5));//15
+        console.log(add(1)(2)(3)(4)(5));//15
+
+      3、编写parse函数，实现访问对象里属性的值
+        let obj = { 
+          a: 1, 
+          b: { c: 2 }, 
+          d: [1, 2, 3], 
+          e: [{ f: [4, 5, 6] }] 
+        };
+        let r1 = parse(obj, 'a');// = 1;
+        let r2 = parse(obj, 'b.c');// = 2;
+        let r3 = parse(obj, 'd[2]');// = 3;
+        let r4 = parse(obj, 'e[0].f[0]');// = 4;
+      
+      */
+
+      let dom = document.getElementById('btn')
+      dom.addEventListener('click',throttle(fn,1000,true))
+  </script>
+
+</body>
+</html>

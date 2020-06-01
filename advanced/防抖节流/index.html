@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      background: yellow;
+      color: red;
+      width: 100px;
+      height: 40px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div id='btn'>点击</div>
+  <script>
+      function fn(){
+        console.log('fn')
+      }
+      function debounce(fn,wait,immediate){
+        let timeout;
+        return ()=>{
+          if(immediate){
+            if(!timeout){
+              fn.apply(this,arguments)
+            }
+          }
+          clearInterval(timeout)
+          timeout = setTimeout(()=>{
+            fn.apply(this,arguments)
+          },wait)
+        }
+      }
+      // function throttle(fn,wait){
+      //   let pre = 0;
+      //   return function(){
+      //     let now = Date.now()
+      //     if(now-pre > wait){
+      //       fn.apply(this,arguments)
+      //       pre = now
+      //     }
+      //   }
+      // }
+      let dom = document.getElementById('btn')
+      dom.addEventListener('click',debounce(fn,1000,true))
+  </script>
+</body>
+</html>

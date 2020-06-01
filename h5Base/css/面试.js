@@ -292,7 +292,7 @@ meta
 		字符串：转换后还是原来的值
 		布尔值：true转成'true'，false转成'true'
 		undefined:转成'undefined'
-		null:转为‘null’
+		null:转为'null'
 
 		对象类型转换
 			先调用toString方法，如果该方法返回原始类型的值，则对该值使用Sting方法，不在进行后续步骤

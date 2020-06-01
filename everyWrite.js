@@ -456,7 +456,8 @@
 
 // hot 更新
 // server 端
-// 创建一个sever&&io,io用来监控客户端连接,将连接的所有client存放起来,同时监控hooks.done钩子,每次编译完成的时候,循环所有的client 并且告诉他们 当前的编译的hash值和一个ok,内部要修改把compiler的输出文件系统改成了 MemoryFileSystem(内存)
+// 创建一个sever&&io,io用来监控客户端连接,将连接的所有client存放起来,同时监控hooks.done钩子,每次编译完成的时候,循环所有的client 
+// 并且告诉他们 当前的编译的hash值和一个ok,内部要修改把compiler的输出文件系统改成了 MemoryFileSystem(内存)
 // client 端
 // module.hot.accept('moduleId',fn) 缓存数据
 // 创建一个发布订阅 client 监控到 server发送过来的hash保存,当socket接收到ok事件事件,会发送`webpackHotUpdate`事件,第一次的时候 会保存当前的hash值,第二次的时候才会走hot的逻辑 
@@ -470,6 +471,176 @@
 // 3、先处理 iteratePitchingLoaders 当其中一个pitch函数没有返回值的时候 直接执行下一个 若有返回值的时候 执行他并且传入 remindingRequest,previousRequest,data 为参数
 // 4、pitch执行完成后处理 normal.raw 当为true的时候 就变成二进制,否则不处理
 // 5、处理 iterateNormalLoaders 一次执行 当执行完最后一个就 退出去 执行回调函数
+
+
+
+// react
+// 虚拟dom createElement创建元素  React.createElement
+  // 1、import React from './react' 我们写的jsx语法 通过babel编译,React.createElement将编译后的jsx语法创建组件,接收三个参数(第一个是组件或者标签,第二个是标签的配置对象id、style等,第三个是及其后面的都是children,可能是一个对象,也可能是一个数组)
+  // 2、createElement 里面返回type和props,props里面存放了第二个标签的配置对象,和children
+  // props.children 不传就是undefined
+  // props.children 传递一个,那就是一个对象 react元素 数字 字符串
+  // props.children 大于一个 那就是一个数组
+  // 静态属性 isReactComponent 是用来用区别函数组件和类组件,在render 里面用到的
+// render ReactDom.render
+  // render里面会判断组件类型是 普通、函数、类组件
+  // 当是普通组件的时候,通过组件类型 创建一个node节点,在循环props 将所有的参数设置到node上,若 render参数 element是string或者number就创createTextNode(element)返回,判断children是数组 就说明还有子组件,进行render循环,知道render第一个参数是字符串或者数字
+  // function render(element,container){
+
+// setState
+// 1、this.setState修改数据变化,首先将setState传进来的数据存放到 pending 列表中
+// 2、判断是否是批量更新,是的话,就将当前组件存放到 dirtyComponents(脏组件数组中)。
+// 否的话,就将直接更新当前组件的 update(直接更新dom操作),遍历所有的 dirtyComponents(脏组件)执行他们的update方法(直接更新dom操作)
+// 是的情况下一般是同步,把所有的组件存起来,否的一般是异步情况,因为同步走完了会更新批量为false
+
+// express 
+// 基本流程 get等 use listen  
+// 1、首先是路由 每一层router 都用Layer创建，第一个参数是路径,第二个参数是处理函数 router.dispatch(每个router 存放着当前路由的所有处理) 将他们存放起来
+// 2、每一层的router 每一次实例的router(layer.router)存放自己  用来去获取当前一层的处理函数和是否是use(use 这一层的router是undefined) 遍历所有的请求methods 只要是某一个请求方式 第一个是路径参数  后面的都是处理函数   获取他所有的处理函数 遍历每一个  都创建一个layer实例 第一个参数是 路径  第二个参数是遍历的单个函数 然后push到当前的stack中。当前类有一个dispatch方法 就是遍历执行所有的 stack 保存的函数
+// 3、listen 在执行  创建 Http.createServer的时候  开始遍历(handle) 执行第一个router 里的所有stack存储的函数,执行完成后 调用next 在取第二个router 就这样依次执行
+// 4、use 和 路由 其实差不多 区别就是 每一层实例的router保存的值不一样 做区别,use是undefined 路由则是每一层的处理函数 use和路由一样 同样是用 Layer创建的 当没有二级中间件的时候 path(路径)就是/,有二级中间件的时候 path就是第一个参数,创建好之后 同样放入到当前实例的stack中,在遍历的时候 就通过layer.router下面是否有值判断是中间件还是路由
+
+
+// 子路由系統
+// express.Router() 内部会返回一个router实例 他和express()返回的是一样的 前者是通过函数返回  后者是通过 原型链 构造，Object.setPrototypeOf(fn,{})主要是通过这个api,将对象挂载到函数的原型链上
+// 返回的实例 同时具备use get等方法 二级路由 就是通过app.use('/xxx',子路由实例)
+/**
+ * A 函数new 和 直接执行 原型链都一样
+ * function A(){
+ *  function b(){
+ *  }
+ *  Object.setPrototypeOf(b,proto)
+ *  return b 
+ * }
+ * let proto = Object.create(null)
+ * proto.a= ()=>{}
+*/
+
+// 路径参数处理
+// 1、他会通过下面的库 在匹配路径的时候 他会提取:后面的key值 在匹配传递过来的路径 进行一一对应 挂载到params对象上
+// 2、匹配到路径 处理函数的时候  会拦截处理 遍历是否有 路径参数 对应的函数 会一个一个的遍历执行 同时他也是通过 中间件的形式一个个执行 这个时候 我们可以在req对象上挂载东西
+/*
+  path-to-regexp 这个库是通过路径 来提取正则
+  let pathToRegexp = require('path-to-regexp')
+  let path = '/user/:uid/:name';
+  let keys = []
+
+  function pathToRegexp(path, keys) {
+    return path.replace(/\:([^\/]+)/g, ($1, $2, $3) => {
+      console.log('===>',$1,$2,$3)
+      keys.push({
+        name: $2,
+        optional:$3,// 偏移量
+        replace: false
+      })
+      return '([^\/]+)'
+    })
+  }
+
+  let rs = pathToRegexp(path, keys)
+  let str = '/user/123/wew'
+  let a = rs.exec(str)
+  console.log(keys,a)
+*/
+
+// 模板引擎
+// app.set('view engine',path.resolve(__dirname, 'views')) 用来设置 模板文件的位子
+// app.set('view engine', 'html') 这个是用来设置模板文件的后缀格式
+// app.engine('html', ejs) 这个 设置html 结尾的 就用ejs 模板进行渲染 ejs是一个函数
+
+// 中间件 格式 use 传入一个函数 参数分别是req,res,next
+/*
+  app.use(function(req, res, next) {
+    let { pathname } = url.parse(req.url)
+    req.path = pathname
+    next()
+  })
+*/
+
+// static中间件 静态目录
+/*
+function static(){
+  function(req, res, next) {
+    let staticPath = path.join(p, req.url)
+    let exists = fs.existsSync(staticPath)
+    if (exists) {
+      let html = fs.readFile(staticPath, (err, item) => {
+        res.setHeader('Content-Type', 'text/html')
+        // res.setHeader('Content-type', 'image/gif')
+        res.end(item)
+      })
+    } else {
+      next()
+    }
+  }
+}
+*/
+
+// bodyParser 请求的参数解析
+/*
+function bodyParser() {
+  return function(req, res, next) {
+    let rs = []
+    req.on('data', function(data) {
+      rs += data
+    })
+    req.on('end', function(data) {
+      try {
+        req.body = JSON.parse(rs)
+      } catch (e) {
+        req.body = require('querystring').parse(rs)
+      }
+      next()
+    })
+  }
+};
+*/
+
+// ejs 单个渲染原理
+// let str = `hello <%=name%> world <%=age%>`;
+// let options = { name: 'zdpx', age: 9 }
+
+// function render(str, options) {
+//   return str.replace(/<%=(\w+)%>?/g, ($0, $1, $2, $3) => {
+//     return options[$1]
+//   })
+// }
+
+// let rs = render(str, options)
+// console.log(rs)
+
+// ejs if渲染原理
+// let options = { user: { name: 'zdpx', age: 9 }, total: 5 }
+// let str = `
+// <%if(user){%>
+//   hello '<%=user.name%>'
+// <%}else{%>
+//   hi guest
+// <%}%>
+// <ul>
+// <%for(let i=0;i<total;i++){%>
+//   <li><%=i%></li>
+// <%}%>
+// </ul>
+// `
+
+// function render(str, options) {
+//   let head = "let tpl = ``;\n with(obj){ \n tpl+=` "
+//   str = str.replace(/<%=([\s\S]+?)%>/g, function() {
+//     return "${" + arguments[1] + "}"
+//   })
+//   str = str.replace(/<%([\s\S]+?)%>/g, function() {
+//     return "`;\n" + arguments[1] + "\n;tpl+=`";
+//   })
+//   let tail = "`} \n return tpl;"
+//   let html = head + str + tail;
+//   console.log('html=>', html)
+//   let fn = new Function('obj', html)
+//   return fn(options)
+// }
+
+// let rs = render(str, options)
+// console.log(rs)
 
 
 

@@ -4,7 +4,7 @@ let options = {
   method: 'POST', //请求方式
   json: true, //希望返回的数据格式 是json格式
   headers: { //请求头
-    "Content-Type": "application/x-www-urlencoded"
+    "Content-Type": "multipart/form-data"
   },
   form: {
     name: 'sg',
