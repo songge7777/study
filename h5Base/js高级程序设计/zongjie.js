@@ -40,7 +40,7 @@
     
     转换方式
       Number()适应任何类型
-      parseInt() 下面2个专门把字符串转换成数值
+      parseInt() 把不同进制的数值(第二个参数,是进制)转换成整数数值
       ParseFloat()
       
       Number转换
@@ -55,19 +55,23 @@
         对象
           调用valueOf() 和toString()
       ParseInt转换 (第二个参数是进制  默认是10)
+        '0001'=> 1
         '123aaa' => 123
         '' => NaN
         '22.5' => 22
-      ParseFloat转换 最后保留2位小数
+      ParseFloat(没有第二个参数)转换 
+        '1.22.33' => 1.22
     
   String
     字符串的特点 一旦被创建 他们的值就不变 要是改变的话 原来的字符串要被销毁 然后再用新字段填充
     
     转换方式
-      toString() 返回对应字符串的表现(数值 布尔 对象 字符串)
+      toString() 返回对应字符串的表现(数值 布尔 对象 字符串),可以传递(2,8,16进制)
         null 和 undefined 没有这个方法
+        (10).toString(2)  => 1010,toString传入2将数值转换成2进制的数
+        parseInt(1010,2) => 10,parseInt第二个参数传2,就说明把一个二进制的数转换成整数
       String()
-        啥都可以转换
+        啥都可以转换(null和undefined 没有toString 但是可以用String进行转换)
         如果值有toString 则调用
         值是null 返回 'null' undefined 返回 'undefined'
   
@@ -78,6 +82,46 @@
     toLocaleString() 返回对象的字符串表示 与执行环境有关系
     toString()
     ValueOf()
+
+    二进制码:就是二进制数
+    二进制反码:将二进制的0取1,1取0
+    按位非~ 
+      计算规则:操作数的负数减一
+        将1(这里叫：原码)转二进制 ＝ 00000001
+        按位取反 ＝ 11111110
+        发现符号位(即最高位)为1(表示负数)，将除符号位之外的其他数字取反 ＝ 10000001
+        末位加1取其补码 ＝ 10000010
+        转换回十进制 ＝ -2
+    按位与(&)  
+        计算规则:操作数二进制对齐 都是1返回1 其他返回0
+        010&101=>000
+    按位或(|)
+        计算规则:操作数二进制对齐 只要是1返回1 都是0返回0
+        0110|1001 => 1111
+    按位异或(^)
+        计算规则:操作数二进制对齐 只要有一个1就返回1 (00 11)都返回0
+        (用法:1和0对取)
+        1^1 =>0
+        0^1 =>1
+    左移(<<)
+        计算规则:所有操作数向左边移动指定的位数(不影响符号)
+        3<<2  => 12 
+    右移
+        有符号,保留符号(>>)
+          计算规则:所有操作数向右边边移动指定的位数(与左移相反)
+        没符号,不保留符号(>>>)
+          (64)>>>5 => 2 这个正常
+          (-64)>>>5 => 13427726 这个数很大  因为负数的二进制码 当整数的二进制码  一起移动(包括最高位的1)
+   
+    布尔值
+      逻辑非!
+        !false => true
+        !0 => true
+      逻辑与&&
+        属于短路操作(重点),第一个值能决定就不会执行第二个值(第一个值是false 就不会执行第二个值)
+        true && false => false
+      逻辑或||
+        有一个为true即返回true,同样是一个短路操作 第一个参数为true后面不会执行
   
   一元操作符
     +(- 同理) 对应非数字会像Number()一样对值进行转换
@@ -88,10 +132,42 @@
       只有一个 将另一个转换成字符串在拼接
     如果 是别的类型则调toString和valueOf 对于undefined和null 调用string
   
-    逗号操作符
+    逗号操作符 返回最后一个
     var num = (1,2,3,4) //num==4
     
     if() 里面都会调用Boolean()转换
+    do{}while() 语句至少会执行一次
+    while(){}
+    for in 用来枚举对象的属性
+
+    label 语句在代码中添加标签(多个for循环用)
+      outermost:
+      for(let i=0;i<10;i++){
+        for(let j=0;j<10;j++){
+            if(i==5&&j==5){
+              break outermost,//(55)
+              // continue outermost,//(95)
+            }
+            num++
+        } 
+      }
+      console.log(num)
+    break 退出后面的循环
+    continue 退出当前循环
+    with(){} 将代码的作用域 设置到一个特定的对象中
+    switch(i){
+      case '2':
+        // 合并使用(一般备注下)
+      case '3':
+        console.log('3 or 2')
+        break;
+        // case值可以是表达式
+      case '4'+'5':
+        console.log('4'+'5')
+        break;
+      default:
+        break;
+    }
 
     函数的参数
       function fn(num1,num2){
@@ -101,18 +177,34 @@
       //当fn有传递值的情况下 num1,num2 和arguments 值永远保持同步
         当fn没有给值的时候 num1,num2 就是undefined  修改任意一个 他们值不同步
 
+    
+第四章:变量作用域
   检查类型
-      typeof 一般用来检查 基本数据类型
+      typeof 一般用来检查 基本数据类型(最佳的工具)
         未定义  undefined
         布尔值  boolean
         字符串  string
         数值    number
         对象和null object
         函数    function
+      对象(instanceof)
+        obj instanceof Object
       数组
         Array.isArray(arr)
         if(value instanceof Array)// 需要环境
+  执行环境定义了变量或函数有权访问其他数据,决定了他们各自的行为,每个执行环境都有一个关联的变量对象
+  在web中,全局执行环境认为是window对象，某个环境中的所有代码执行完成后,该环境被销毁,其中所有变量等 都销毁,全局执行环境直到浏览器关闭才销毁
+  作用域当前访问的权限
+  作用域链保证了对执行环境有权访问所有变量和函数的有序访问
       
+  延迟作用域链
+      try-catch 他会创建一个新的变量对象
+      with语句 会将执行对象添加到作用域链中
+      这两个语句都会在作用域链的前端添加一个变量对象
+  变量声明 
+      使用var 声明的变量会自动被添加到最近的环境中,在函数中就是当前函数的局部环境
+      如果不使用var 则被加到全局环境中
+第五章:引用类型
       创建对象
         1、let obj = new Object()
         2、person={
@@ -121,10 +213,10 @@
         读取属性
           person.name/person['name']
       创建数组
-        1、var colors = new Array(20)
+        1、var colors = new Array(20)// 20 代表的是创建length =20的数组 
         2、var colors = new Array(['red','blue'])
         利用length属性对数组进行增删
-          var colors = new Array(['red','blue'])
+          var colors = new Array('red','blue')
           colors.length = 1 // blue就会被删除掉
           colors.length = 2 // ['red','undefined']
         转换方法
@@ -132,7 +224,7 @@
             也等同 join(',')方法 (join 接收undefined 或者空 和接收',' 是一样的)
             var c = ['red','blue']
             c.toString() //red,blue
-          valueOf() 同样结果
+          valueOf() 同样返回数组本身
           alert(c)  同样结论,alert要接收字符串参数 默认会调用toString
         数组方法
           栈方法(后进先出)
@@ -144,8 +236,7 @@
           重排序方法
             reverse
             sort
-              sort方法会调用每个数组项的toString(),比较得到的字符串
-              sort((a,b)=>a-b) 第一个值位于第二个值前面 返回负数 第二个值位于第一个值前面返回正数 
+              sort((a,b)=>a-b) 返回负值位子不变,返回正值调换位子,返回0位子不变(第一个值位于第二个值前面 返回负数 第二个值位于第一个值前面返回正数)
           操作方法
             concat 连接 返回新的数组 原数组不变
             slice('startNumber','endNumber') 包前不包后 返回新的数组 原数组不变
@@ -180,18 +271,20 @@
                 //若传递了第二个参数 即index从0开始 pre就是第一个  否则从1开始 cur就是第一个
               },{})
       Date 
-        Date.parse()
+        Date.parse() 接收的是字符串不能是number
           // 格式 
           //  月/日/年 => 6/13/2004
           //  2004-05-25T00:00:00 
+          //  Date.parse('日期')这个等同于new Date('日期')
         Date.UTC()
           //  年分,基于0月开始(0是一月,1是二月),小时基于0到23 
           //  年月是必须的
         new Date 接收的参数与Date.UTC 一样
+        Date.UTC(年,月，日，时，分，秒) 表示返回当前的毫秒数
         Date.now() 表示返回当前的毫秒数
           返回的都是毫秒数
         toLocaleString,toString,valueOf方法
-          toLocaleString和toString大致一样的效果 返回时间
+          toLocaleString 和toString大致一样的效果 返回时间
         valueOf方法 返回日期的毫秒数 可以用操作符来比较日期值
           var date1 = new Date(2007,0,1)
           var date2 = new Date(2007,1,1)
@@ -217,9 +310,10 @@
         var pattern2 = new RegExp('cat','g')
         注意给RegExp 传递的是字符串,需要对特殊字符进行双重转义
                      new 对象里面传递的是字符串  直接写不是字符串
-          字面量模式         等价的字符串
+          字面量模式         等价的字符串(即用RegExp创建的参数)
         /\[bc\]at/  =>  "\\[bc\\]at"
         /\d.\d{1,2}/  =>  "\\d.\\d{1,2}"
+        /\\hello/   => '\\\\hello'
         
         2、
         let path = '/user/:uid/:name';
@@ -238,20 +332,22 @@
         g:表示应用所有字符串,而非在发现第一个匹配后立即停止
         i:表示不区分大小写
         m:表示多行模式,即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项
-      属性
+      元字符
+        所有的元字符都需要转义
+      实例属性
         global 布尔值,表示是否设置了g标志
         ignoreCase 布尔值,表示是否设置了i标志
         lastIndex 整数,表示开始搜索下一个匹配项的字符位置,从0开始(带g才有效果 不然每次都是从头开始)
         multiline 布尔值 表示是否设置了m表示
         source 正则表达式的字符串表示
-        $n n代表()内匹配数据
+      
         var pattern = /\[bc\]at/i;
         console.lo(pattern.global) => false
         console.lo(pattern.ignoreCase) => true
         console.lo(pattern.multiline) => false 
         console.lo(pattern.lastIndex) => 0
         console.lo(pattern.source) => "\[bc\]at"
-      方法
+      实例方法
         exec 接收一个字符串参数 返回匹配的内容，或者没有匹配项情况下返回null
         返回的是array实例,记住不能随便加空格,没有捕获组则该数组只包含一项,捕获组就是中括号
           index 表示匹配项在字符串中的位置
@@ -266,7 +362,15 @@
       toString方法 
         RegExp 和 字面量创建的 toString方法都返回正则表达式的字面量
       valueOf 返回正则表达式的本身 是一个对象
-
+    静态属性 (基于最近一次正则表达式操作而变化)
+      RegExp 上的方法
+      $n n代表()内匹配数据
+      input($_) 最近一次要匹配的字符串
+      lastMatch($&) 最近一次匹配的结果
+      lastParent($+) 最近一次匹配的捕获组
+      leftContext($`) 匹配结果之前的数据
+      rightContext($') 匹配结果之后的数据
+      multiline($*) 布尔 表示是否所有表达式都使用多行模式
     函数
       内部属性
         this 看执行环境
@@ -625,3 +729,4 @@
 //   }
 // }
 // console.log(gcd(2, 2))
+*/
