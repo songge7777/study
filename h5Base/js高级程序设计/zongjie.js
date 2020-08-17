@@ -41,6 +41,7 @@
     转换方式
       Number()适应任何类型
       parseInt() 把不同进制的数值(第二个参数,是进制)转换成整数数值
+        第二个参数 是转换成进制 若转换不了 就返回NAN 默认是10  parseInt(num,1)=>NAN  parseInt(num,2)=>2进制的num转换成整数
       ParseFloat()
       
       Number转换
@@ -400,7 +401,20 @@
         length 表示函数希望接收的命名参数的个数
         prototype 属性不可枚举
         call/apply/bind    
+      // 阶乘 arguments.callee代表的当前的行数
+      function factorial(num){
+        if(num<=1){
+          return 1;
+        }else{
+          return num*arguments.callee(num-1)
+        }
       
+      }
+    Number
+      方法 (四舍五入)
+        toFixed(num)
+        let rs = 10 
+        console.log(rs.toFixed(2))//10.00
     string
       方法 访问字符串中特定的方法
         charAt()/charCodeAt() 都接收一个参数
